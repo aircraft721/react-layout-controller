@@ -6,6 +6,8 @@ import { Provider } from 'mobx-react';
 const MainApp = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Raleway', sans-serif;
 `;  
 
 //stores

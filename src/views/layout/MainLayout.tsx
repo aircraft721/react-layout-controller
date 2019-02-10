@@ -1,16 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const MainLayoutWrapper = styled.div`
-    max-width: 100%;
+const LayoutWrapper = styled.div`
+    flex-grow: 1;
+    background: goldenrod;
 `;
 
 class MainLayout extends React.Component {
     render() {
         return (
-            <MainLayoutWrapper>
+            <LayoutWrapper>
                 Main Layout
-            </MainLayoutWrapper>
+            </LayoutWrapper>
         );
     }
 }
