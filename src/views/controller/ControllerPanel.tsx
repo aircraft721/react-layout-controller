@@ -11,9 +11,10 @@ interface IController {
 
 const ControllerWrapper = styled.div`
     display: flex;
+    border: 1px solid black;
     flex-direction: column;
-    background-color: #0186FE;
-    flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '350px' : '50px'};
+    background-color: #27292C;
+    flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '50px'};
     transition: all 0.3s ease;
     height: 100vh;
 `;
@@ -43,11 +44,16 @@ class ControllerPanel extends React.Component<IController> {
         this.props.controllerStore.toggleTypographySection();
     }
 
+    public onClickToggleBackgroundSection = () => {
+        this.props.controllerStore.toggleBackgroundSection();
+    }
+
     render() {
         const { 
             isControllerPanelOpen, 
             isLayoutSectionOpen,
-            isTypographySectionOpen
+            isTypographySectionOpen,
+            isBackgroundSectionOpen
         } = this.props.controllerStore;
 
         return (
@@ -71,10 +77,13 @@ class ControllerPanel extends React.Component<IController> {
                 }
                 {isControllerPanelOpen && 
                     <ControllerSection 
+                        controllerStore={this.props.controllerStore}
                         isLayoutSectionOpen={isLayoutSectionOpen}
                         isTypographySectionOpen={isTypographySectionOpen}
+                        isBackgroundSectionOpen={isBackgroundSectionOpen}
                         onClickToggleLayoutSection={this.onClickToggleLayoutSection}
                         onClickToggleTypographySection={this.onClickToggleTypographySection}
+                        onClickToggleBackgroundSection={this.onClickToggleBackgroundSection}
                     />
                 }
             </ControllerWrapper>
