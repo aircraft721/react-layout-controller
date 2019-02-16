@@ -4,6 +4,7 @@ import { LayoutSectionContent } from './controller-section/LayoutSectionContent'
 import { TypographySectionContent } from './controller-section/TypographySectionContent';
 import { BackgroundSectionContent } from './controller-section/BackgroundSectionContent';
 import { ControllerStore } from '../../stores/ControllerStore';
+import { Colors } from '../themes/Colors';
 
 interface IControllerSection {
     controllerStore: ControllerStore;
@@ -27,7 +28,7 @@ const LayoutSection = styled.div`
     cursor: pointer;
     margin-top: 1px;
     margin-bottom: 1px;
-    background: #27292C;
+    background: ${Colors.darkGrey};
 `;
 
 const TypographySection = styled.div`
@@ -38,7 +39,7 @@ const TypographySection = styled.div`
     align-items: center;
     cursor: pointer;
     margin-bottom: 1px;
-    background: #27292C;
+    background: ${Colors.darkGrey};
 `;
 
 const BackgroundSection = styled.div`
@@ -49,31 +50,32 @@ const BackgroundSection = styled.div`
     align-items: center;
     cursor: pointer;
     margin-bottom: 1px;
-    background: #27292C;
+    background: ${Colors.darkGrey};
 `;
 
 const StyledTitleLayout = styled.div`
     font-weight: bold;
     font-size: 15px;
-    color: ${(props: { isLayoutSectionOpen: boolean }) => props.isLayoutSectionOpen ? '#10D37C' : '#C5CACF'};
+    color: ${(props: { isLayoutSectionOpen: boolean }) => props.isLayoutSectionOpen ? `${Colors.green}` : `${Colors.greyWhite}`};
 `;
 
 const StyledTitleTypography = styled.div`
     font-weight: bold;
     font-size: 15px;
-    color: ${(props: { isTypographySectionOpen: boolean }) => props.isTypographySectionOpen ? '#10D37C' : '#C5CACF'};
+    color: ${(props: { isTypographySectionOpen: boolean }) => props.isTypographySectionOpen ? `${Colors.green}` : `${Colors.greyWhite}`};
 `;
 
 const StyledTitleBackground = styled.div`
     font-weight: bold;
     font-size: 15px;
-    color: ${(props: { isBackgroundSectionOpen: boolean }) => props.isBackgroundSectionOpen ? '#10D37C' : '#C5CACF'};
+    color: ${(props: { isBackgroundSectionOpen: boolean }) => props.isBackgroundSectionOpen ? `${Colors.green}` : `${Colors.greyWhite}`};
 `;
 
 const StyledPoint = styled.div`
     height: 3px;
     width: 3px;
-    background: #10D37C;
+    border-radius: 50%;
+    background: ${Colors.green};
     margin-left: 10px;
 `;
 

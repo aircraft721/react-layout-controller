@@ -2,31 +2,31 @@ export const defaultButtonData = [
     {
         name: 'Block',
         display: 'block',
-        src: '',
-        isActive: false
-    },
-    {
-        name: 'Inline Block',
-        display: 'inline-block',
-        src: '',
+        src: 'images/block.png',
         isActive: false
     },
     {
         name: 'Inline',
         display: 'inline',
-        src: '',
+        src: 'images/inline.png',
         isActive: false
     },
     {
         name: 'FLex',
         display: 'flex',
-        src: '',
+        src: 'images/flex.png',
         isActive: false,
+    },
+    {
+        name: 'Grid',
+        display: 'grid',
+        src: 'images/grid.png',
+        isActive: false
     },
     {
         name: 'None',
         display: 'none',
-        src: '',
+        src: 'images/none.png',
         isActive: false
     }
 ];

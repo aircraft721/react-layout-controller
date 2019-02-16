@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { Colors } from '../../themes/Colors';
 
 export const SectionContent = styled.div`
     padding: 20px;
     margin-bottom: 1px;
-    color: white;
-    background: #313437;
+    color: ${Colors.white};
+    background: ${Colors.mediumDarkGrey};
 `;
 
 export const LayoutSettings = styled.div`
@@ -12,12 +13,12 @@ export const LayoutSettings = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #506574;
+    background: ${Colors.greyBlue};
     padding: 15px 10px;
     position: relative;
 `;
 
 export const SettingsTitle = styled.div`
-    color: #F7F7F7;
+    color: ${Colors.smokeWhite};
     font-size: 12px;
 `;

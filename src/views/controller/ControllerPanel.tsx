@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { ControllerStore } from '../../stores/ControllerStore';
 import { ToggleButton } from './ToggleButton';
 import { ControllerSection } from './ControllerSection';
+import { Colors } from '../themes/Colors';
 
 interface IController {
     controllerStore: ControllerStore;
@@ -13,7 +14,7 @@ const ControllerWrapper = styled.div`
     display: flex;
     border: 1px solid black;
     flex-direction: column;
-    background-color: #27292C;
+    background-color: ${Colors.darkGrey};
     flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '50px'};
     transition: all 0.3s ease;
     height: 100vh;
