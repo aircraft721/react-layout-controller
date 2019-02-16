@@ -29,8 +29,6 @@ var db = mongoose.connection;
 const elementSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     className: String,
-    focusDiv: Boolean,
-    isActive: Boolean,
     height: String,
     width: String,
     backgroundColor: String
@@ -38,7 +36,8 @@ const elementSchema = new mongoose.Schema({
 
 const ElementModel = mongoose.model('Element', elementSchema);
 
-app.post('/element-creator', (req, res) => {
+//POST
+app.post('/element/create', (req, res) => {
     const element = new ElementModel({
         _id: new mongoose.Types.ObjectId(),
         className: req.body.className,
@@ -58,13 +57,30 @@ app.post('/element-creator', (req, res) => {
     })
 })
 
-app.get('/element-creator', (req, res) => {
+//GET BY ID
+app.get('/element/get/:id', (req, res) => {
+    const id = req.params.id;
+    
+    ElementModel.findById({_id: id}, (err, element) => {
+        if (err) {
+            console.log('err', err);
+            return res.status(500).send();
+        }
+        res.status(200).json({
+            element: element
+        })
+    })
+})
+
+//GET
+app.get('/element/get', (req, res) => {
     ElementModel.find({}, (err, divs) => {
         res.json(divs)
     });
 })
 
-app.delete('/element-creator/:id', (req, res) => {
+//DELETE
+app.delete('/element/delete/:id', (req, res) => {
     const id = req.params.id;
     ElementModel.findOneAndRemove({_id: id}, (err) => {
         if(err){
@@ -73,6 +89,22 @@ app.delete('/element-creator/:id', (req, res) => {
         }
         return res.status(200).send();
     });
+})
+
+//UPDATE
+app.patch('/element/update/:id', (req, res) => {
+    const id = req.params.id;
+    const update = req.body;
+
+    ElementModel.findOneAndUpdate({_id: id}, (update), {new: true}, (err, element) => {
+        if (err) {
+            console.log('err', err);
+            return res.status(500).send();
+        };
+        res.status(200).json({
+            element
+        });
+    }); 
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
