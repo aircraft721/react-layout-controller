@@ -63,7 +63,17 @@ class ControllerPanel extends React.Component<IController> {
                     onClickToggle={this.onClickToggle}
                     isControllerPanelOpen={isControllerPanelOpen}
                 />
-                {isControllerPanelOpen === false && 
+                {isControllerPanelOpen ? 
+                    <ControllerSection 
+                        controllerStore={this.props.controllerStore}
+                        isLayoutSectionOpen={isLayoutSectionOpen}
+                        isTypographySectionOpen={isTypographySectionOpen}
+                        isBackgroundSectionOpen={isBackgroundSectionOpen}
+                        onClickToggleLayoutSection={this.onClickToggleLayoutSection}
+                        onClickToggleTypographySection={this.onClickToggleTypographySection}
+                        onClickToggleBackgroundSection={this.onClickToggleBackgroundSection}
+                    />
+                :
                     <SidebarWrapper>
                         <SidebarPadding>
                             <img src='../../../public/images/layout.png' alt='layout' />
@@ -75,17 +85,6 @@ class ControllerPanel extends React.Component<IController> {
                             <img src='../../../public/images/picture.png' alt='background' />
                         </SidebarPadding>
                     </SidebarWrapper>
-                }
-                {isControllerPanelOpen && 
-                    <ControllerSection 
-                        controllerStore={this.props.controllerStore}
-                        isLayoutSectionOpen={isLayoutSectionOpen}
-                        isTypographySectionOpen={isTypographySectionOpen}
-                        isBackgroundSectionOpen={isBackgroundSectionOpen}
-                        onClickToggleLayoutSection={this.onClickToggleLayoutSection}
-                        onClickToggleTypographySection={this.onClickToggleTypographySection}
-                        onClickToggleBackgroundSection={this.onClickToggleBackgroundSection}
-                    />
                 }
             </ControllerWrapper>
         );

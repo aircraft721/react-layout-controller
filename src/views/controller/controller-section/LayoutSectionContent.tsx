@@ -77,8 +77,6 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
                         {this.props.controllerStore.buttonObject.map((data, index) => {
                             return (
                                 <DisplayButton 
-                                    onMouseEnter={this.showTooltip}
-                                    onMouseLeave={this.hideTooltip}
                                     key={index}
                                     isActive={data.isActive}
                                     onClick={() => this.toggle(index)}

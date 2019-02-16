@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { defaultButtonData } from './DefaultData';
 
 export interface IButtonObject {
@@ -137,6 +137,11 @@ class ControllerStore {
         } else {
             this.isBackgroundSectionOpen = !this.isBackgroundSectionOpen;
         }
+    }
+
+    @computed 
+    public get selectedDisplayButton() {
+        return this.buttonObject.find(data => data.isActive === true);
     }
 }
 
