@@ -8,6 +8,7 @@ const MainApp = styled.div`
     flex-direction: row;
     justify-content: space-between;
     font-family: 'Raleway', sans-serif;
+    user-select: none;
 `;  
 
 //stores

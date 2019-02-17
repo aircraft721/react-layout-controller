@@ -52,7 +52,7 @@ export interface IFlex extends ICommonAttributes{
     alignSelf: string;
 }
 
-export interface INone {
+export interface INone extends ICommonAttributes {
     display: string;
 }
 
@@ -137,7 +137,8 @@ export const defaultInputData: IDefaultInputs = {
             ...commonAttributes
         },
         none: {
-            display: 'none'
+            display: 'none',
+            ...commonAttributes
         },
         flex: {
             display: 'flex',
@@ -149,6 +150,10 @@ export const defaultInputData: IDefaultInputs = {
             alignItems: '',
             alignContent: '',
             alignSelf: '',
+        },
+        grid: {
+            ...commonAttributes,
+            display: 'grid'
         }
     }
 }

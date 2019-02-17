@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Colors } from '../../themes/Colors';
 
 export const SectionContent = styled.div`
-    padding: 20px;
+    padding: 20px 10px;
     margin-bottom: 1px;
     color: ${Colors.white};
     background: ${Colors.mediumDarkGrey};

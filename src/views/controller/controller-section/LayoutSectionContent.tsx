@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ControllerStore } from '../../../stores/ControllerStore';
 import { observer } from 'mobx-react';
 import { Colors } from '../../themes/Colors';
+import { LayoutInputs } from './LayoutInputs';
 
 interface ILayoutSectionContent {
     controllerStore: ControllerStore;
@@ -16,6 +17,8 @@ interface ILayoutState {
 const DisplayOptionsButtons = styled.div`
     display: flex;
     width: 100%;
+    position: relative;
+    right: 1px;
 `;
 
 const DisplayButton = styled.button`
@@ -95,6 +98,7 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
                             )
                         })}
                     </DisplayOptionsButtons>
+                    <LayoutInputs data={this.props.controllerStore.layoutType} />
                 </LayoutSettings> 
             </SectionContent>
         )

@@ -18,6 +18,19 @@ const ControllerWrapper = styled.div`
     flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '50px'};
     transition: all 0.3s ease;
     height: 100vh;
+    /* overflow-x: auto;
+    :-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	    background-color: #F5F5F5;
+    };
+    :-webkit-scrollbar {
+        width: 10px;
+	    background-color: #F5F5F5;
+    };
+    :-webkit-scrollbar-thumb {
+        background-color: #000000;
+	    border: 2px solid #555555;
+    } */
 `;
 
 @inject('controllerStore')
