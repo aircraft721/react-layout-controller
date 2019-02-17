@@ -5,6 +5,7 @@ import { ControllerStore } from '../../stores/ControllerStore';
 import { ToggleButton } from './ToggleButton';
 import { ControllerSection } from './ControllerSection';
 import { Colors } from '../themes/Colors';
+import { ControllerPanelClosedSidebar } from './ControllerPanelClosedSidebar';
 
 interface IController {
     controllerStore: ControllerStore;
@@ -12,22 +13,11 @@ interface IController {
 
 const ControllerWrapper = styled.div`
     display: flex;
-    border: 1px solid black;
     flex-direction: column;
     background-color: ${Colors.darkGrey};
     flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '50px'};
     transition: all 0.3s ease;
     height: 100vh;
-`;
-
-const SidebarWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const SidebarPadding = styled.div`
-    padding: 20px;
 `;
 
 @inject('controllerStore')
@@ -74,17 +64,7 @@ class ControllerPanel extends React.Component<IController> {
                         onClickToggleBackgroundSection={this.onClickToggleBackgroundSection}
                     />
                 :
-                    <SidebarWrapper>
-                        <SidebarPadding>
-                            <img src='../../../public/images/layout.png' alt='layout' />
-                        </SidebarPadding>
-                        <SidebarPadding>
-                            <img src='../../../public/images/edit.png' alt='typography' />
-                        </SidebarPadding>
-                        <SidebarPadding>
-                            <img src='../../../public/images/picture.png' alt='background' />
-                        </SidebarPadding>
-                    </SidebarWrapper>
+                    <ControllerPanelClosedSidebar />
                 }
             </ControllerWrapper>
         );

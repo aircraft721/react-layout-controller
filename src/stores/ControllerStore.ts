@@ -1,12 +1,5 @@
 import { observable, action, computed } from 'mobx';
-import { defaultButtonData } from './DefaultData';
-
-export interface IButtonObject {
-    name: string;
-    display: string;
-    src: string;
-    isActive: boolean;
-}
+import { defaultButtonData, defaultInputData, IButtonObject, IDefaultInputs, IFlex, INone, IInline, IBlock } from './DefaultData';
 
 class ControllerStore {
     constructor() {
@@ -15,6 +8,7 @@ class ControllerStore {
         this.displayLayoutSectionFromLocalStorage('layoutSection');
         this.displayTypographySectionFromLocalStorage('typographySection');
         this.displayBackgroundSectionFromLocalStorage('backgroundSection');
+        this.displayLayoutType(this.selectedDisplayButtonName);
     };
 
     @observable public isControllerPanelOpen: boolean = true;
@@ -23,6 +17,10 @@ class ControllerStore {
     @observable public isBackgroundSectionOpen: boolean = true;
     @observable public localStorageButtonObject: IButtonObject[] = [];
     @observable public buttonObject: IButtonObject[] = [];
+    @observable public defautButtonObject: IButtonObject[] = defaultButtonData;
+
+    @observable public defaultInputs: IDefaultInputs = defaultInputData; 
+    @observable public layoutType: IBlock | IInline | INone | IFlex;
 
     @action
     public toggleDisplayOptionsButtons = (index: number) => {
@@ -140,9 +138,24 @@ class ControllerStore {
     }
 
     @computed 
-    public get selectedDisplayButton() {
-        return this.buttonObject.find(data => data.isActive === true);
+    public get selectedDisplayButton(): IButtonObject {
+        const localStorageData = this.buttonObject.find(data => data.isActive === true);
+        const defaultData = this.defautButtonObject.find(data => data.isActive === true);
+        const data = localStorageData ? localStorageData : defaultData;
+        
+        return <IButtonObject>data;
     }
+
+    @computed get selectedDisplayButtonName(): string {
+        return this.selectedDisplayButton.name;
+    }
+
+    @action 
+    public displayLayoutType = (key: string) => {
+        const data = this.defaultInputs.layout[key];
+        return this.layoutType = data;
+    }
+
 }
 
 export { ControllerStore };

@@ -68,7 +68,13 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
         this.props.controllerStore.toggleDisplayOptionsButtons(index);
     }
 
+    public displayLayoutType = (key: string) => {
+        this.props.controllerStore.displayLayoutType(key);
+    }
+
     public render() {
+        console.log('displaylayout', this.props.controllerStore.layoutType)
+        console.log('layoutTypenigga', this.props.controllerStore.selectedDisplayButton)
         return (
             <SectionContent>
                 <LayoutSettings>
@@ -79,7 +85,10 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
                                 <DisplayButton 
                                     key={index}
                                     isActive={data.isActive}
-                                    onClick={() => this.toggle(index)}
+                                    onClick={() => {
+                                        this.toggle(index);
+                                        this.displayLayoutType(data.name); 
+                                    }}
                                 >
                                     <img src={data.src} alt={data.name}/>
                                 </DisplayButton>

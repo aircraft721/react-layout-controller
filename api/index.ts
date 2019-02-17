@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser')
+const Joi = require('joi');
 
 const port = 3000;
 const app = express();
@@ -29,9 +30,34 @@ var db = mongoose.connection;
 const elementSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     className: String,
+    backgroundColor: String,
+    paddingTop: String,
+    paddingBottom: String,
+    paddingLeft: String,
+    paddingRight: String,
+    marginTop: String,
+    marginBottom: String,
+    marginLeft: String,
+    marginRight: String,
+    padding: String,
+    margin: String,
     height: String,
     width: String,
-    backgroundColor: String
+    minWidth: String,
+    maxWidth: String,
+    maxHeight: String,
+    minHeight: String,
+    float: String,
+    overFlow: String,
+    position: String,
+    display: String,
+    flexDirection: String,
+    justifyContent: String,
+    flexWrap: String,
+    flexBasis: String,
+    alignItems: String,
+    alignContent: String,
+    alignSelf: String,
 })
 
 const ElementModel = mongoose.model('Element', elementSchema);
@@ -46,9 +72,11 @@ app.post('/element/create', (req, res) => {
         backgroundColor: req.body.backgroundColor
     });
 
+    const validation = validateInputData(req.body);
+    console.log('validation', validation);
+
     element
         .save()
-        .then(result => console.log(result))
         .catch(err => console.error('error', err));
 
     res.status(200).json({
@@ -74,8 +102,8 @@ app.get('/element/get/:id', (req, res) => {
 
 //GET
 app.get('/element/get', (req, res) => {
-    ElementModel.find({}, (err, divs) => {
-        res.json(divs)
+    ElementModel.find({}, (err, elements) => {
+        res.json(elements)
     });
 })
 
@@ -106,6 +134,43 @@ app.patch('/element/update/:id', (req, res) => {
         });
     }); 
 })
+
+//VALIDATION
+const validateInputData = (data) => {
+    const schema = Joi.object().keys({
+        className: Joi.string(),
+        backgroundColor: Joi.string(),
+        paddingTop: Joi.string().regex(/(\d+)(px|%|em)/),
+        paddingBottom: Joi.string().regex(/(\d+)(px|%|em)/),
+        paddingLeft: Joi.string().regex(/(\d+)(px|%|em)/),
+        paddingRight: Joi.string().regex(/(\d+)(px|%|em)/),
+        marginTop: Joi.string().regex(/(\d+)(px|%|em)/),
+        marginBottom: Joi.string().regex(/(\d+)(px|%|em)/),
+        marginLeft: Joi.string().regex(/(\d+)(px|%|em)/),
+        marginRight: Joi.string().regex(/(\d+)(px|%|em)/),
+        padding: Joi.string().regex(/(\d+)(px|%|em)/),
+        margin: Joi.string().regex(/(\d+)(px|%|em)/),
+        height: Joi.string().regex(/(\d+)(px|%|em|vh)/),
+        width: Joi.string().regex(/^(\d+)(px|%|em|vw)/),
+        minWidth: Joi.string().regex(/(\d+)(px|%|em|vw)/),
+        maxWidth: Joi.string().regex(/(\d+)(px|%|em|vw)/),
+        maxHeight: Joi.string().regex(/(\d+)(px|%|em|vh)/),
+        minHeight: Joi.string().regex(/(\d+)(px|%|em|vh)/),
+        float: Joi.string().regex(/(none|right|left)/),
+        overFlow: Joi.string().regex(/(visible|hidden|scroll|auto)/),
+        position: Joi.string().regex(/(static|relative|absolute|sticky)/),
+        display: Joi.string().regex(/(block|inline|flex|grid|none)/),
+        flexDirection: Joi.string().regex(/(colunn|column-reverse|row|row-reverse|inherit)/),
+        justifyContent: Joi.string().regex(/(start|end|center|space-around|space-between|space-evenly|inherit)/),
+        flexWrap: Joi.string().regex(/(wrap|no-wrap|wrap-reverse|inherit)/),
+        flexBasis: Joi.string().regex(/(\d+)(px|%|em|auto)/),
+        alignItems: Joi.string().regex(/(start|end|center|self-start|self-end|baseline|inherit)/),
+        alignContent: Joi.string().regex(/(start|end|center|self-start|self-end|baseline|inherit)/),
+        alignSelf: Joi.string().regex(/(start|end|center|self-start|self-end|baseline|inherit)/),
+    });
+
+    return Joi.validate(data, schema);
+}
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
 module.exports = app;
