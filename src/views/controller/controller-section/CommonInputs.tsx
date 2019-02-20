@@ -34,6 +34,7 @@ const InputWrapper = styled.div`
     align-items: center;
     justify-content: flex-end;
     height: 100%;
+    width: 50%;
 `;
 
 const StyledLabel = styled.label`
@@ -52,6 +53,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                             placeholder={values.width}
                             type="text"
                             name="width"
+                            spellCheck="false"
                             value={values.width}
                         />
                     </InputWrapper>
@@ -61,6 +63,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                             placeholder={values.height}
                             type="text"
                             name="height"
+                            spellCheck="false"
                             value={values.height}
                         />
                     </InputWrapper>
@@ -72,6 +75,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                             placeholder={values.minWidth}
                             type="text"
                             name="minWidth"
+                            spellCheck="false"
                             value={values.minWidth}
                         />
                     </InputWrapper>
@@ -81,6 +85,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                             placeholder={values.minHeight}
                             type="text"
                             name="minHeight"
+                            spellCheck="false"
                             value={values.minHeight}
                         />
                     </InputWrapper>
@@ -92,6 +97,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                             placeholder={values.maxHeight}
                             type="text"
                             name="maxWidth"
+                            spellCheck="false"
                             value={values.maxWidth}
                         />
                     </InputWrapper>
@@ -101,6 +107,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                             placeholder={values.maxWidth}
                             type="text"
                             name="maxHeight"
+                            spellCheck="false"
                             value={values.maxHeight}
                         />
                     </InputWrapper>

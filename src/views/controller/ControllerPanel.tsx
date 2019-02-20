@@ -15,22 +15,23 @@ const ControllerWrapper = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${Colors.darkGrey};
-    flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '50px'};
+    flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '60px'};
     transition: all 0.3s ease;
     height: 100vh;
-    /* overflow-x: auto;
-    :-webkit-scrollbar-track {
+    overflow-y: auto;
+    overflow-x: hidden;
+    ::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	    background-color: #F5F5F5;
+	    background-color: transparent;
     };
-    :-webkit-scrollbar {
-        width: 10px;
-	    background-color: #F5F5F5;
+    ::-webkit-scrollbar {
+        width: 7px;
+	    background-color: transparent;
     };
-    :-webkit-scrollbar-thumb {
-        background-color: #000000;
-	    border: 2px solid #555555;
-    } */
+    ::-webkit-scrollbar-thumb {
+        background-color: ${Colors.smokeGrey};
+        border-radius: 10px;
+    }
 `;
 
 @inject('controllerStore')

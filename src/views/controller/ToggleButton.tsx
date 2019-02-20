@@ -10,7 +10,8 @@ interface IToggleButton {
 
 const ButtonWrapper = styled.button`
     align-self: flex-end;
-    padding: 20px;
+    padding: 1.5em;
+    min-height: 5em;
     background-color: transparent;
     cursor: pointer;
     border-radius: 50%;
