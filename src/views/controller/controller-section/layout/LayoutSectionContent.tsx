@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { SectionContent, LayoutSettings, SettingsTitle } from './LayoutSectionStyles';
+import { SectionContent, LayoutSettings, SettingsTitle } from '../LayoutSectionStyles';
 import styled from 'styled-components';
-import { ControllerStore } from '../../../stores/ControllerStore';
+import { ControllerStore } from '../../../../stores/ControllerStore';
 import { observer } from 'mobx-react';
-import { Colors } from '../../themes/Colors';
+import { Colors } from '../../../themes/Colors';
 import { LayoutInputs } from './LayoutInputs';
 
 interface ILayoutSectionContent {
@@ -48,24 +48,24 @@ const SettingTitleWrapper = styled(SettingsTitle)`
 
 @observer
 class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayoutState> {
-    constructor(props: ILayoutSectionContent){
-        super(props)
-        this.state = {
-            isHovering: false
-        }
-    }
+    // constructor(props: ILayoutSectionContent){
+    //     super(props)
+    //     this.state = {
+    //         isHovering: false
+    //     }
+    // }
 
-    public showTooltip = () => {
-        this.setState({
-            isHovering: true
-        })
-    }
+    // public showTooltip = () => {
+    //     this.setState({
+    //         isHovering: true
+    //     })
+    // }
 
-    public hideTooltip = () => {
-        this.setState({
-            isHovering: false
-        })
-    }
+    // public hideTooltip = () => {
+    //     this.setState({
+    //         isHovering: false
+    //     })
+    // }
     
     public toggle = (index: number) => {
         this.props.controllerStore.toggleDisplayOptionsButtons(index);
@@ -76,12 +76,10 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
     }
 
     public render() {
-        console.log('displaylayout', this.props.controllerStore.layoutType)
-        console.log('layoutTypenigga', this.props.controllerStore.selectedDisplayButton)
         return (
             <SectionContent>
                 <LayoutSettings>
-                    <SettingTitleWrapper>Display Setting</SettingTitleWrapper>
+                    <SettingTitleWrapper>Display Settings</SettingTitleWrapper>
                     <DisplayOptionsButtons>
                         {this.props.controllerStore.buttonObject.map((data, index) => {
                             return (

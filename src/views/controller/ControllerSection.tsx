@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { LayoutSectionContent } from './controller-section/LayoutSectionContent';
-import { TypographySectionContent } from './controller-section/TypographySectionContent';
-import { BackgroundSectionContent } from './controller-section/BackgroundSectionContent';
+import { LayoutSectionContent } from './controller-section/layout/LayoutSectionContent';
+import { TypographySectionContent } from './controller-section/typography/TypographySectionContent';
+import { BackgroundSectionContent } from './controller-section/background/BackgroundSectionContent';
 import { ControllerStore } from '../../stores/ControllerStore';
 import { Colors } from '../themes/Colors';
 

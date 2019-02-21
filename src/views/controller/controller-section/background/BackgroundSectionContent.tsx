@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SectionContent, LayoutSettings, SettingsTitle } from './LayoutSectionStyles';
+import { SectionContent, LayoutSettings, SettingsTitle } from '../LayoutSectionStyles';
 
-class TypographySectionContent extends React.Component {
+class BackgroundSectionContent extends React.Component {
     public render() {
         return (
             <SectionContent>
@@ -13,4 +13,4 @@ class TypographySectionContent extends React.Component {
     }
 }
 
-export { TypographySectionContent }
+export { BackgroundSectionContent }

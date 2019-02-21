@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
 import { ControllerStore } from '../../stores/ControllerStore';
-import { ToggleButton } from './ToggleButton';
+import { ToggleButton } from './helpers/ToggleButton';
 import { ControllerSection } from './ControllerSection';
 import { Colors } from '../themes/Colors';
 import { ControllerPanelClosedSidebar } from './ControllerPanelClosedSidebar';

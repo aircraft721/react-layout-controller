@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { IBlock, IInline, INone, IFlex } from '../../../stores/DefaultData';
+import { IBlock, IInline, INone, IFlex } from '../../../../stores/DefaultData';
 import { observer } from 'mobx-react';
 import { WidthHeightInputs } from './editing-components/WidthHeightInputs';
 import { MarginPaddingModule } from './editing-components/MarginPaddingModule';

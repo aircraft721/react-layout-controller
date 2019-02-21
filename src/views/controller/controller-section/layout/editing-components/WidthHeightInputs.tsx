@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ICommonAttributes } from '../../../../stores/DefaultData';
-import { Colors } from '../../../themes/Colors';
+import { ICommonAttributes } from '../../../../../stores/DefaultData';
+import { Colors } from '../../../../themes/Colors';
 import { Field } from 'formik';
 
 interface IWidthHeightInputs {
