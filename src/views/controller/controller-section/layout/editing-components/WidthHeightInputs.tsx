@@ -10,7 +10,7 @@ interface IWidthHeightInputs {
 
 const StyledField = styled(Field)`
     margin-left: 5px;
-    width: 40%;
+    width: 45%;
     height: 20px;
     padding: 0;
     outline-width: thin;
@@ -35,6 +35,10 @@ const InputWrapper = styled.div`
     justify-content: flex-end;
     height: 100%;
     width: 50%;
+    :first-child {
+        position: relative;
+        right: 10px;
+    }
 `;
 
 const StyledLabel = styled.label`
@@ -53,7 +57,7 @@ class WidthHeightInputs extends React.Component<IWidthHeightInputs> {
         return (
             <StyledWrapper>
                 <FieldWrapper>
-                    <InputWrapper style={{position: 'relative', right: '10px'}}>
+                    <InputWrapper>
                         <StyledLabel>Width:</StyledLabel>
                         <StyledField 
                             placeholder={values.width}
@@ -75,7 +79,7 @@ class WidthHeightInputs extends React.Component<IWidthHeightInputs> {
                     </InputWrapper>
                 </FieldWrapper>
                 <FieldWrapper>
-                    <InputWrapper style={{position: 'relative', right: '10px'}}>
+                    <InputWrapper>
                         <StyledLabel>Min:</StyledLabel>
                         <StyledField 
                             placeholder={values.minWidth}
@@ -97,7 +101,7 @@ class WidthHeightInputs extends React.Component<IWidthHeightInputs> {
                     </InputWrapper>
                 </FieldWrapper>
                 <FieldWrapper>
-                    <InputWrapper style={{position: 'relative', right: '10px'}}>
+                    <InputWrapper>
                         <StyledLabel>Max:</StyledLabel>
                         <StyledField 
                             placeholder={values.maxHeight}
