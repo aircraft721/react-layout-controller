@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { IBlock, IInline, INone, IFlex } from '../../../stores/DefaultData';
 import { observer } from 'mobx-react';
-import { CommonInputs } from './CommonInputs';
+import { WidthHeightInputs } from './editing-components/WidthHeightInputs';
+import { MarginPaddingModule } from './editing-components/MarginPaddingModule';
 import { Formik } from 'formik';
 
 interface ILayoutInputs {
@@ -19,11 +20,14 @@ const LayoutInputsWrapper = styled.div`
     right: 1px;
 `;
 
+
 @observer
 class LayoutInputs extends React.Component<ILayoutInputs> {
     render() {
         return (
-            <LayoutInputsWrapper>
+            <>
+            {this.props.data.display !== 'none' ? 
+                <LayoutInputsWrapper>
                 <Formik
                     initialValues={this.props.data}
                     onSubmit={() => {}}
@@ -31,19 +35,22 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                         switch(this.props.data.display) {
                             case 'block': 
                                 return (
-                                    <CommonInputs values={values} />
+                                    <>
+                                        <WidthHeightInputs values={values} />
+                                        <MarginPaddingModule values={values} />
+                                    </>
                                 );
                             case 'inline': 
                                 return (
-                                    <CommonInputs values={values} />
+                                    <WidthHeightInputs values={values} />
                                 );
                             case 'flex': 
                                 return (
-                                    <CommonInputs values={values} />
+                                    <WidthHeightInputs values={values} />
                                 );
                             case 'grid': 
                                 return (
-                                    <CommonInputs values={values} />
+                                    <WidthHeightInputs values={values} />
                                 );
                             case 'none': 
                                 return (
@@ -51,8 +58,10 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                                 );
                         }
                     })}
-                />
+                /> 
             </LayoutInputsWrapper>
+            : null}
+            </>
         )
     }
 }

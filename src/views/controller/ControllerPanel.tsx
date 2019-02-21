@@ -15,7 +15,7 @@ const ControllerWrapper = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${Colors.darkGrey};
-    flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '270px' : '60px'};
+    flex-basis: ${(props: { isControllerPanelOpen: boolean }) => props.isControllerPanelOpen ? '290px' : '60px'};
     transition: all 0.3s ease;
     height: 100vh;
     overflow-y: auto;
@@ -29,7 +29,7 @@ const ControllerWrapper = styled.div`
 	    background-color: transparent;
     };
     ::-webkit-scrollbar-thumb {
-        background-color: ${Colors.smokeGrey};
+        background-color: ${Colors.greyBlue};
         border-radius: 10px;
     }
 `;

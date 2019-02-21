@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ICommonAttributes } from '../../../stores/DefaultData';
-import { Colors } from '../../themes/Colors';
+import { ICommonAttributes } from '../../../../stores/DefaultData';
+import { Colors } from '../../../themes/Colors';
 import { Field } from 'formik';
 
-interface ICommonInputs {
+interface IWidthHeightInputs {
     values: ICommonAttributes;
 }
 
@@ -41,13 +41,19 @@ const StyledLabel = styled.label`
     font-size: 12px;
 `;
 
-class CommonInputs extends React.Component<ICommonInputs> {
+const StyledWrapper = styled.div`
+    margin-bottom: 13px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid ${Colors.mediumDarkGrey};
+`;
+
+class WidthHeightInputs extends React.Component<IWidthHeightInputs> {
     render() {
         const { values } = this.props;
         return (
-            <>
+            <StyledWrapper>
                 <FieldWrapper>
-                    <InputWrapper style={{marginRight: '5px'}}>
+                    <InputWrapper style={{position: 'relative', right: '10px'}}>
                         <StyledLabel>Width:</StyledLabel>
                         <StyledField 
                             placeholder={values.width}
@@ -69,7 +75,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                     </InputWrapper>
                 </FieldWrapper>
                 <FieldWrapper>
-                    <InputWrapper style={{marginRight: '5px'}}>
+                    <InputWrapper style={{position: 'relative', right: '10px'}}>
                         <StyledLabel>Min:</StyledLabel>
                         <StyledField 
                             placeholder={values.minWidth}
@@ -91,7 +97,7 @@ class CommonInputs extends React.Component<ICommonInputs> {
                     </InputWrapper>
                 </FieldWrapper>
                 <FieldWrapper>
-                    <InputWrapper style={{marginRight: '5px'}}>
+                    <InputWrapper style={{position: 'relative', right: '10px'}}>
                         <StyledLabel>Max:</StyledLabel>
                         <StyledField 
                             placeholder={values.maxHeight}
@@ -112,9 +118,9 @@ class CommonInputs extends React.Component<ICommonInputs> {
                         />
                     </InputWrapper>
                 </FieldWrapper>
-            </>  
+            </StyledWrapper>  
         );
     }
 }
 
-export { CommonInputs };
+export { WidthHeightInputs };
