@@ -104,7 +104,7 @@ class WidthHeightInputs extends React.Component<IWidthHeightInputs> {
                     <InputWrapper>
                         <StyledLabel>Max:</StyledLabel>
                         <StyledField 
-                            placeholder={values.maxHeight}
+                            placeholder={values.maxWidth}
                             type="text"
                             name="maxWidth"
                             spellCheck="false"
@@ -114,7 +114,7 @@ class WidthHeightInputs extends React.Component<IWidthHeightInputs> {
                     <InputWrapper>
                         <StyledLabel>Max:</StyledLabel>
                         <StyledField 
-                            placeholder={values.maxWidth}
+                            placeholder={values.maxHeight}
                             type="text"
                             name="maxHeight"
                             spellCheck="false"

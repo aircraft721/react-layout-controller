@@ -12,7 +12,7 @@ interface ILayoutInputs {
 
 const LayoutInputsWrapper = styled.div`
     width: 100%;
-    padding: 10px 0;
+    padding: 8px 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -20,47 +20,55 @@ const LayoutInputsWrapper = styled.div`
     right: 1px;
 `;
 
-
 @observer
 class LayoutInputs extends React.Component<ILayoutInputs> {
     render() {
         return (
             <>
-            {this.props.data.display !== 'none' ? 
+            {this.props.data.display &&
                 <LayoutInputsWrapper>
                 <Formik
                     initialValues={this.props.data}
+                    enableReinitialize={true}
                     onSubmit={() => {}}
-                    render={(({ values }) => {
+                    render={(({ initialValues, values }) => {
                         switch(this.props.data.display) {
-                            case 'block': 
-                                return (
-                                    <>
-                                        <WidthHeightInputs values={values} />
-                                        <MarginPaddingModule values={values} />
-                                    </>
-                                );
-                            case 'inline': 
-                                return (
+                        case 'block': 
+                            return (
+                                <>
                                     <WidthHeightInputs values={values} />
-                                );
-                            case 'flex': 
-                                return (
+                                    <MarginPaddingModule values={values} />
+                                </>
+                            );
+                        case 'inline': 
+                            return (
+                                <>
                                     <WidthHeightInputs values={values} />
-                                );
-                            case 'grid': 
-                                return (
+                                    <MarginPaddingModule values={values} />
+                                </>
+                            );
+                        case 'flex': 
+                            return (
+                                <>
                                     <WidthHeightInputs values={values} />
-                                );
-                            case 'none': 
-                                return (
-                                    <></>
-                                );
+                                    <MarginPaddingModule values={values} />
+                                </>
+                            );
+                        case 'grid': 
+                            return (
+                                <>
+                                    <WidthHeightInputs values={values} />
+                                    <MarginPaddingModule values={values} />
+                                </>
+                            );
+                        case 'none': 
+                            return (
+                                <></>
+                            );
                         }
                     })}
                 /> 
-            </LayoutInputsWrapper>
-            : null}
+            </LayoutInputsWrapper>}
             </>
         )
     }

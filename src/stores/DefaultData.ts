@@ -152,8 +152,8 @@ export const defaultInputData: IDefaultInputs = {
             alignSelf: '',
         },
         grid: {
+            display: 'grid',
             ...commonAttributes,
-            display: 'grid'
         }
     }
 }

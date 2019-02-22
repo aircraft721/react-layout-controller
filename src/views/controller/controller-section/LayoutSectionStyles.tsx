@@ -14,7 +14,7 @@ export const LayoutSettings = styled.div`
     align-items: center;
     justify-content: center;
     background: ${Colors.greyBlue};
-    padding: 15px 10px;
+    padding: 15px 10px 0 15px;
     position: relative;
 `;
 
