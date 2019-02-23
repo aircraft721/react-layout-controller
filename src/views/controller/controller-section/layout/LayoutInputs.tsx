@@ -29,9 +29,11 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                 <LayoutInputsWrapper>
                 <Formik
                     initialValues={this.props.data}
-                    enableReinitialize={true}
+                    enableReinitialize={false}
                     onSubmit={() => {}}
-                    render={(({ initialValues, values }) => {
+                    render={(({ values }) => {
+                        values.display = this.props.data.display;
+                        console.log('values', values.display)
                         switch(this.props.data.display) {
                         case 'block': 
                             return (

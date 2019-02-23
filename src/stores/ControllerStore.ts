@@ -8,7 +8,9 @@ class ControllerStore {
         this.displayLayoutSectionFromLocalStorage('layoutSection');
         this.displayTypographySectionFromLocalStorage('typographySection');
         this.displayBackgroundSectionFromLocalStorage('backgroundSection');
+        this.displayLayoutType(this.localStoragSelectedDisplayButtonName);
         this.displayLayoutType(this.selectedDisplayButtonName);
+        
     };
 
     @observable public isControllerPanelOpen: boolean = true;
@@ -146,14 +148,21 @@ class ControllerStore {
         return <IButtonObject>data;
     }
 
-    @computed get selectedDisplayButtonName(): string {
+    @computed get localStoragSelectedDisplayButtonName(): string {
         return this.selectedDisplayButton.name;
+    }
+
+    @computed get defaultDisplayButtonName() {
+        return this.defautButtonObject.find(data => data.isActive === true);
+    }
+
+    @computed get selectedDisplayButtonName() {
+        return this.defaultDisplayButtonName.name;
     }
 
     @action 
     public displayLayoutType = (key: string) => {
-        const data = this.defaultInputs.layout[key];
-        return this.layoutType = data;
+        this.layoutType = this.defaultInputs.layout[key];
     }
 
 }
