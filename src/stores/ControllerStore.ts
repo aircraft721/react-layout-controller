@@ -1,16 +1,12 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action } from 'mobx';
 import { defaultButtonData, defaultInputData, IButtonObject, IDefaultInputs, IFlex, INone, IInline, IBlock } from './DefaultData';
 
 class ControllerStore {
     constructor() {
-        this.displayObjectButtonsFromLocalStorage();
         this.displayControllerSectionsFromLocalStorage('controllerLayout');
         this.displayLayoutSectionFromLocalStorage('layoutSection');
         this.displayTypographySectionFromLocalStorage('typographySection');
         this.displayBackgroundSectionFromLocalStorage('backgroundSection');
-        this.displayLayoutType(this.localStoragSelectedDisplayButtonName);
-        this.displayLayoutType(this.selectedDisplayButtonName);
-        
     };
 
     @observable public isControllerPanelOpen: boolean = true;
@@ -22,18 +18,21 @@ class ControllerStore {
     @observable public defautButtonObject: IButtonObject[] = defaultButtonData;
 
     @observable public defaultInputs: IDefaultInputs = defaultInputData; 
-    @observable public layoutType: IBlock | IInline | INone | IFlex;
+    @observable public layoutType: IBlock | IInline | INone | IFlex = {};
+
+    @observable public formikData: Object[] = [];
+
+    @action
+    public setDataFromFormik = (data: Object[]) => {
+        this.formikData = data;
+    }
 
     @action
     public toggleDisplayOptionsButtons = (index: number) => {
-        this.buttonObject.map((button: IButtonObject) => button.isActive = false);
-        this.buttonObject[index].isActive = true;
-        localStorage.setItem('buttonObject', JSON.stringify(this.buttonObject));
-        const localButtonObject = localStorage.getItem('buttonObject');
-        if (localButtonObject) {
-            const localStorageButtonObject = JSON.parse(localButtonObject);
-            this.setLocalStorageButton(localStorageButtonObject)
-        }
+        this.defautButtonObject.map((button: IButtonObject) => button.isActive = false);
+        this.defautButtonObject[index].isActive = true;
+        const name = this.defautButtonObject[index].name;
+        this.displayLayoutType(name);
     }
 
     public displayObjectButtonsFromLocalStorage = () => {
@@ -139,32 +138,10 @@ class ControllerStore {
         }
     }
 
-    @computed 
-    public get selectedDisplayButton(): IButtonObject {
-        const localStorageData = this.buttonObject.find(data => data.isActive === true);
-        const defaultData = this.defautButtonObject.find(data => data.isActive === true);
-        const data = localStorageData ? localStorageData : defaultData;
-        
-        return <IButtonObject>data;
-    }
-
-    @computed get localStoragSelectedDisplayButtonName(): string {
-        return this.selectedDisplayButton.name;
-    }
-
-    @computed get defaultDisplayButtonName() {
-        return this.defautButtonObject.find(data => data.isActive === true);
-    }
-
-    @computed get selectedDisplayButtonName() {
-        return this.defaultDisplayButtonName.name;
-    }
-
     @action 
     public displayLayoutType = (key: string) => {
         this.layoutType = this.defaultInputs.layout[key];
     }
-
 }
 
 export { ControllerStore };

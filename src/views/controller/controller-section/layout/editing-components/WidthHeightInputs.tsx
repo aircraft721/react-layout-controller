@@ -47,7 +47,7 @@ const StyledLabel = styled.label`
 
 const StyledWrapper = styled.div`
     margin-bottom: 13px;
-    padding-bottom: 10px;
+    padding: 10px 0;
     border-bottom: 1px solid ${Colors.mediumDarkGrey};
 `;
 

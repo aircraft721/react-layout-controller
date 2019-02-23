@@ -73,7 +73,7 @@ export const defaultButtonData: IButtonObject[] = [
         name: 'block',
         display: 'Block',
         src: 'images/block.png',
-        isActive: true
+        isActive: false
     },
     {
         name: 'inline',
@@ -102,7 +102,7 @@ export const defaultButtonData: IButtonObject[] = [
 ];
 
 
-const commonAttributes: ICommonAttributes = {
+export const commonAttributes: ICommonAttributes = {
     paddingTop: '',
     paddingBottom: '',
     paddingLeft: '',
