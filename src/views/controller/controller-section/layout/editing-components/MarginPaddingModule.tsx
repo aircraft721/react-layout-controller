@@ -64,7 +64,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
             <ModuleWrapper>
                 <GridElements>
                     <StyledField 
-                        placeholder={values.marginTop === ('' || undefined) ? '-' : values.marginTop}
+                        placeholder={values.marginTop === '' ? '-' : values.marginTop}
                         type="text"
                         name="marginTop"
                         spellCheck="false"
@@ -74,7 +74,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                 <BigGridElement>
                     <SingleHorizontalElement>
                         <StyledField 
-                            placeholder={values.paddingTop === ('' || undefined) ? '-' : values.paddingTop}
+                            placeholder={values.paddingTop === '' ? '-' : values.paddingTop}
                             type="text"
                             name="paddingTop"
                             spellCheck="false"
@@ -85,7 +85,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                 <BigGridElement>
                     <HorizontalElements>
                         <StyledField 
-                            placeholder={values.marginLeft === ('' || undefined) ? '-' : values.marginLeft}
+                            placeholder={values.marginLeft === '' ? '-' : values.marginLeft}
                             type="text"
                             name="marginLeft"
                             spellCheck="false"
@@ -94,7 +94,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                     </HorizontalElements>
                     <StyledHorizontalElements>
                         <StyledField 
-                            placeholder={values.paddingLeft === ('' || undefined) ? '-' : values.paddingLeft}
+                            placeholder={values.paddingLeft === '' ? '-' : values.paddingLeft}
                             type="text"
                             name="paddingLeft"
                             spellCheck="false"
@@ -104,7 +104,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                     <StyledHorizontalElements></StyledHorizontalElements>
                     <StyledHorizontalElements>
                         <StyledField 
-                            placeholder={values.paddingRight === ('' || undefined) ? '-' : values.paddingRight}
+                            placeholder={values.paddingRight === '' ? '-' : values.paddingRight}
                             type="text"
                             name="paddingRight"
                             spellCheck="false"
@@ -113,7 +113,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                     </StyledHorizontalElements>
                     <HorizontalElements>
                         <StyledField 
-                            placeholder={values.marginRight === ('' || undefined) ? '-' : values.marginRight}
+                            placeholder={values.marginRight === '' ? '-' : values.marginRight}
                             type="text"
                             name="marginRight"
                             spellCheck="false"
@@ -124,7 +124,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                 <BigGridElement>
                     <SingleHorizontalElement>
                         <StyledField 
-                            placeholder={values.marginBottom === ('' || undefined) ?  '-' : values.marginBottom}
+                            placeholder={values.marginBottom === '' ?  '-' : values.marginBottom}
                             type="text"
                             name="marginBottom"
                             spellCheck="false"
@@ -134,7 +134,7 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                 </BigGridElement>
                 <GridElements>
                     <StyledField 
-                        placeholder={values.paddingBottom === ('' || undefined) ?  '-' : values.paddingBottom}
+                        placeholder={values.paddingBottom === '' ?  '-' : values.paddingBottom}
                         type="text"
                         name="paddingBottom"
                         spellCheck="false"

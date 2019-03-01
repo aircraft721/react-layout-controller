@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import { defaultButtonData, defaultInputData, IButtonObject, IDefaultInputs, IFlex, INone, IInline, IBlock } from './DefaultData';
+import { defaultButtonData, defaultInputData, IButtonObject, IDefaultInputs, IFlex, INone, IInline, IBlock, commonLayoutData, IArrayOfHtmlElements } from './DefaultData';
 
 class ControllerStore {
     constructor() {
@@ -18,13 +18,19 @@ class ControllerStore {
     @observable public defautButtonObject: IButtonObject[] = defaultButtonData;
 
     @observable public defaultInputs: IDefaultInputs = defaultInputData; 
-    @observable public layoutType: IBlock | IInline | INone | IFlex = {};
+    @observable public layoutType: IBlock | IInline | INone | IFlex = commonLayoutData;
 
-    @observable public formikData: Object[] = [];
+    @observable public arrayOfHtmlElements: IArrayOfHtmlElements[] = [];
+    @observable public singleHtmlElement: IArrayOfHtmlElements;
+
+    @action 
+    public setInputData = (data: IArrayOfHtmlElements) => {
+        this.singleHtmlElement = data;
+    }
 
     @action
-    public setDataFromFormik = (data: Object[]) => {
-        this.formikData = data;
+    public setArrayOfElements = (data: IArrayOfHtmlElements) => {
+        this.arrayOfHtmlElements.push(data);
     }
 
     @action

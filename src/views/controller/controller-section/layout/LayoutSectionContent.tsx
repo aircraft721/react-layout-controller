@@ -28,8 +28,8 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
         this.props.controllerStore.displayLayoutType(key);
     }
 
-    public setDataFromFormik = (data: any) => {
-        this.props.controllerStore.setDataFromFormik(data);
+    public setInputData = (data: any) => {
+        this.props.controllerStore.setInputData(data);
     }
 
     public render() {
@@ -42,7 +42,7 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
                         buttonData={this.props.controllerStore.defautButtonObject}
                         toggleDisplayOptionsButtons={this.props.controllerStore.toggleDisplayOptionsButtons}
                         displayLayoutType={this.props.controllerStore.displayLayoutType}
-                        setDataFromFormik={this.props.controllerStore.setDataFromFormik}
+                        setInputData={this.setInputData}
                     />
                 </LayoutSettings> 
             </SectionContent>

@@ -11,7 +11,7 @@ interface IController {
     controllerStore: ControllerStore;
 }
 
-const ControllerWrapper = styled.div`
+export const StyledRightPanel = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${Colors.darkGrey};
@@ -62,7 +62,7 @@ class ControllerPanel extends React.Component<IController> {
         } = this.props.controllerStore;
 
         return (
-            <ControllerWrapper isControllerPanelOpen={isControllerPanelOpen}>
+            <StyledRightPanel isControllerPanelOpen={isControllerPanelOpen}>
                 <ToggleButton 
                     onClickToggle={this.onClickToggle}
                     isControllerPanelOpen={isControllerPanelOpen}
@@ -80,7 +80,7 @@ class ControllerPanel extends React.Component<IController> {
                 :
                     <ControllerPanelClosedSidebar />
                 }
-            </ControllerWrapper>
+            </StyledRightPanel>
         );
     }
 }

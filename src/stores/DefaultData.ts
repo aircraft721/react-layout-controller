@@ -157,3 +157,16 @@ export const defaultInputData: IDefaultInputs = {
         }
     }
 }
+
+export const commonLayoutData = {
+    className: '',
+    backgroundColor: '',
+    display: '',
+    ...commonAttributes
+}
+
+export interface IArrayOfHtmlElements extends ICommonAttributes {
+    className: string;
+    backgroundColor: string;
+    display: string;
+}

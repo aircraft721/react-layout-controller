@@ -12,7 +12,7 @@ interface ILayoutInputs {
     buttonData: IButtonObject[];
     displayLayoutType(key: string): void;
     toggleDisplayOptionsButtons(index: number): void;
-    setDataFromFormik(data: any): void;
+    setInputData(data: any): void;
 }
 
 const LayoutInputsWrapper = styled.div`
@@ -128,13 +128,13 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                         enableReinitialize={false}
                         onSubmit={() => {}}
                         render={(({ values }) => {
-                            values.display = this.props.data.display
-                            this.props.setDataFromFormik(values);
+                            values.display = this.props.data.display;
+                            this.props.setInputData(values)
                             return (
-                                <>
+                                <div>
                                     {this.displayOptionsButton()}
                                     {this.switchData(this.props.data, values)}
-                                </>
+                                </div>
                             );
                         })}
                     /> 

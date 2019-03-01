@@ -17,6 +17,7 @@ import { controllerStore } from './stores/ControllerStore';
 //views
 import { ControllerPanel } from './views/controller/ControllerPanel';
 import { MainLayout } from './views/layout/MainLayout';
+import { ControllerPanelLeftSidebar } from './views/controller/ControllerPanelLeftSidebar';
 
 const stores = {
     controllerStore
@@ -29,7 +30,8 @@ interface IProps {
 export const App: React.SFC<IProps> = () => {
     return (
         <MainApp>
-            <MainLayout />
+            <ControllerPanelLeftSidebar {...stores}/>
+            <MainLayout {...stores} />
             <ControllerPanel {...stores}/>
         </MainApp>
     );
