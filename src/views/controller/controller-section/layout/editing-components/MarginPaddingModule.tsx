@@ -124,21 +124,21 @@ class MarginPaddingModule extends React.Component<IWidthHeightInputs> {
                 <BigGridElement>
                     <SingleHorizontalElement>
                         <StyledField 
-                            placeholder={values.marginBottom === '' ?  '-' : values.marginBottom}
+                            placeholder={values.paddingBottom === '' ?  '-' : values.paddingBottom}
                             type="text"
-                            name="marginBottom"
+                            name="paddingBottom"
                             spellCheck="false"
-                            value={values.marginBottom}
+                            value={values.paddingBottom}
                         />
                     </SingleHorizontalElement>
                 </BigGridElement>
                 <GridElements>
                     <StyledField 
-                        placeholder={values.paddingBottom === '' ?  '-' : values.paddingBottom}
+                        placeholder={values.marginBottom === '' ?  '-' : values.marginBottom}
                         type="text"
-                        name="paddingBottom"
+                        name="marginBottom"
                         spellCheck="false"
-                        value={values.paddingBottom}
+                        value={values.marginBottom}
                     />
                 </GridElements>
             </ModuleWrapper>

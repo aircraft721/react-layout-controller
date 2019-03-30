@@ -12,25 +12,26 @@ export interface IDefaultInputs{
 }
 
 export interface ICommonAttributes {
-    paddingTop: string;
-    paddingBottom: string;
-    paddingLeft: string;
-    paddingRight: string;
-    marginTop: string;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    padding: string;
-    margin: string;
-    height: string;
-    width: string;
-    minWidth: string;
-    maxWidth: string;
-    maxHeight: string;
-    minHeight: string;
-    float: string;
-    overFlow: string;
-    position: string;
+    id?: string;
+    paddingTop?: string;
+    paddingBottom?: string;
+    paddingLeft?: string;
+    paddingRight?: string;
+    marginTop?: string;
+    marginBottom?: string;
+    marginLeft?: string;
+    marginRight?: string;
+    padding?: string;
+    margin?: string;
+    height?: string;
+    width?: string;
+    minWidth?: string;
+    maxWidth?: string;
+    maxHeight?: string;
+    minHeight?: string;
+    float?: string;
+    overFlow?: string;
+    position?: string;
 }
 
 export interface IBlock extends ICommonAttributes {
@@ -121,7 +122,7 @@ export const commonAttributes: ICommonAttributes = {
     minHeight: '',
     float: '',
     overFlow: '',
-    position: '',
+    position: ''
 }
 
 export const defaultInputData: IDefaultInputs = {
@@ -166,7 +167,8 @@ export const commonLayoutData = {
 }
 
 export interface IArrayOfHtmlElements extends ICommonAttributes {
-    className: string;
-    backgroundColor: string;
+    id?: string;
+    className?: string;
+    backgroundColor?: string;
     display: string;
 }

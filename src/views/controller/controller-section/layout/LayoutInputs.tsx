@@ -129,7 +129,7 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                         onSubmit={() => {}}
                         render={(({ values }) => {
                             values.display = this.props.data.display;
-                            this.props.setInputData(values)
+                            this.props.setInputData(values);
                             return (
                                 <div>
                                     {this.displayOptionsButton()}
