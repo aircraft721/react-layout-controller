@@ -13,6 +13,7 @@ export interface IDefaultInputs{
 
 export interface ICommonAttributes {
     id?: string;
+    backgroundColor?: string;
     paddingTop?: string;
     paddingBottom?: string;
     paddingLeft?: string;

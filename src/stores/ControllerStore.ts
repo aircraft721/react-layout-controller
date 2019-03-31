@@ -31,6 +31,11 @@ class ControllerStore {
         this.singleHtmlElement = data;
     }
 
+    @action
+    public setBackgroundColor = (color?: string) => {
+        this.singleHtmlElement['backgroundColor'] = color;
+    }
+
     @action setElementInArray = (data: IArrayOfHtmlElements) => {
         this.arrayOfHtmlElements.push(data);
     }

@@ -17,7 +17,7 @@ interface ILayoutInputs {
 
 const LayoutInputsWrapper = styled.div`
     width: 100%;
-    padding: 8px 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

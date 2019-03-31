@@ -21,4 +21,6 @@ export const LayoutSettings = styled.div`
 export const SettingsTitle = styled.div`
     color: ${Colors.smokeWhite};
     font-size: 12px;
+    position: absolute;
+    top: -8px;
 `;

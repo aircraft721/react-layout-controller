@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { SectionContent, LayoutSettings, SettingsTitle } from '../LayoutSectionStyles';
-import styled from 'styled-components';
 import { ControllerStore } from '../../../../stores/ControllerStore';
 import { observer } from 'mobx-react';
 import { LayoutInputs } from './LayoutInputs';
@@ -12,11 +11,6 @@ interface ILayoutSectionContent {
 interface ILayoutState {
     isHovering: boolean;
 }
-
-const SettingTitleWrapper = styled(SettingsTitle)`
-    position: absolute;
-    top: -8px;
-`;
 
 @observer
 class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayoutState> {
@@ -36,7 +30,7 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
         return (
             <SectionContent>
                 <LayoutSettings>
-                    <SettingTitleWrapper>Display Settings</SettingTitleWrapper>
+                    <SettingsTitle>Display Settings</SettingsTitle>
                     <LayoutInputs 
                         data={this.props.controllerStore.layoutType} 
                         buttonData={this.props.controllerStore.defautButtonObject}
