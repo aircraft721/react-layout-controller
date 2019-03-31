@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Colors } from '../themes/Colors';
-import { ControllerStore } from '../../stores/ControllerStore';
 import { observer, inject } from 'mobx-react';
+import { RootStore } from '../../stores/RootStore';
 
 interface IControllerPanelLeftSidebar {
-    controllerStore: ControllerStore;
+    rootStore: RootStore;
 }
 
 const StyledLeftPanel = styled.div`
@@ -33,12 +33,12 @@ const StyledLeftPanel = styled.div`
     }
 `;
 
-@inject('controllerStore')
+@inject('rootStore')
 @observer
 class ControllerPanelLeftSidebar extends React.Component<IControllerPanelLeftSidebar> {
     public setArrayOfElementsMethod = () => {
-        const { singleHtmlElement } = this.props.controllerStore;
-        this.props.controllerStore.setArrayOfElements(singleHtmlElement);
+        const { singleHtmlElement } = this.props.rootStore.controllerStore;
+        this.props.rootStore.fetchDataStore.addNewElement(singleHtmlElement);
     }
 
     public render() {

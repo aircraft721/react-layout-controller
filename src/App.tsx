@@ -12,7 +12,7 @@ const MainApp = styled.div`
 `;  
 
 //stores
-import { controllerStore } from './stores/ControllerStore';
+import { rootStore } from './stores/RootStore';
 
 //views
 import { ControllerPanel } from './views/controller/ControllerPanel';
@@ -20,7 +20,7 @@ import { MainLayout } from './views/layout/MainLayout';
 import { ControllerPanelLeftSidebar } from './views/controller/ControllerPanelLeftSidebar';
 
 const stores = {
-    controllerStore
+    rootStore
 };
 
 interface IProps {
@@ -39,7 +39,7 @@ export const App: React.SFC<IProps> = () => {
 
 ReactDOM.render(
 <Provider 
-    {...stores}
+    rootStore={rootStore}
 >
     <App />
 </Provider>

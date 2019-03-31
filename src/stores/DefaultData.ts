@@ -167,7 +167,7 @@ export const commonLayoutData = {
 }
 
 export interface IArrayOfHtmlElements extends ICommonAttributes {
-    id?: string;
+    _id: string;
     className?: string;
     backgroundColor?: string;
     display: string;

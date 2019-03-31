@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ControllerStore } from '../../stores/ControllerStore';
 import { observer, inject } from 'mobx-react';
 import { IArrayOfHtmlElements } from '../../stores/DefaultData';
+import { RootStore } from '../../stores/RootStore';
 
 interface IMainLayout {
-    controllerStore: ControllerStore;
+    rootStore: RootStore;
 }
 
 const LayoutWrapper = styled.div`
@@ -34,26 +34,32 @@ const StyledElement = styled.div`
     float: ${(props: IArrayOfHtmlElements) => props.float};
     overFlow: ${(props: IArrayOfHtmlElements) => props.overFlow};
     position: ${(props: IArrayOfHtmlElements) => props.position};
-    background-color: pink;
+    background-color: ${(props: IArrayOfHtmlElements) => props.backgroundColor};
 `;
 
-@inject('controllerStore')
+@inject('rootStore')
 @observer
 class MainLayout extends React.Component<IMainLayout> {
-    public onClickElement = (id: string) => {
-        console.log('elementId', id)
+    public async componentDidMount() {
+        await this.props.rootStore.fetchDataStore.getElements();
+    }
+
+    public onDoubleClickDelete = (id: string) => {
+        this.props.rootStore.fetchDataStore.deleteElement(id);
     }
 
     public render() {
-        const { arrayOfHtmlElements } = this.props.controllerStore;
+        const { arrayOfHtmlElements } = this.props.rootStore.controllerStore;
         console.log(arrayOfHtmlElements)
         return (
             <LayoutWrapper>
                 {arrayOfHtmlElements.map((element: IArrayOfHtmlElements, index: number) => {
                     return (
                         <StyledElement 
-                            onClick={() => console.log('data', element.id)}
+                            onClick={() => console.log('item', element._id)}
+                            onDoubleClick={() => this.onDoubleClickDelete(element._id)}
                             key={index}
+                            _id={element._id}
                             display={element.display}
                             width={element.width}
                             height={element.height}
@@ -76,7 +82,7 @@ class MainLayout extends React.Component<IMainLayout> {
                             position={element.position}
                             backgroundColor={element.backgroundColor}
                         >
-                            {element.id}
+                            {element._id}
                         </StyledElement>
                     )
                 })}

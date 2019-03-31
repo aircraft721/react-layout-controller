@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
-import { ControllerStore } from '../../stores/ControllerStore';
+import { RootStore } from '../../stores/RootStore';
 import { ToggleButton } from './helpers/ToggleButton';
 import { ControllerSection } from './ControllerSection';
 import { Colors } from '../themes/Colors';
 import { ControllerPanelClosedSidebar } from './ControllerPanelClosedSidebar';
 
 interface IController {
-    controllerStore: ControllerStore;
+    rootStore: RootStore;
 }
 
 export const StyledRightPanel = styled.div`
@@ -34,23 +34,23 @@ export const StyledRightPanel = styled.div`
     }
 `;
 
-@inject('controllerStore')
+@inject('rootStore')
 @observer
 class ControllerPanel extends React.Component<IController> {
     public onClickToggle = () => {
-        this.props.controllerStore.toggleControllerPanel();
+        this.props.rootStore.controllerStore.toggleControllerPanel();
     }
 
     public onClickToggleLayoutSection = () => {
-        this.props.controllerStore.toggleLayoutSection();
+        this.props.rootStore.controllerStore.toggleLayoutSection();
     }
 
     public onClickToggleTypographySection = () => {
-        this.props.controllerStore.toggleTypographySection();
+        this.props.rootStore.controllerStore.toggleTypographySection();
     }
 
     public onClickToggleBackgroundSection = () => {
-        this.props.controllerStore.toggleBackgroundSection();
+        this.props.rootStore.controllerStore.toggleBackgroundSection();
     }
 
     render() {
@@ -59,7 +59,7 @@ class ControllerPanel extends React.Component<IController> {
             isLayoutSectionOpen,
             isTypographySectionOpen,
             isBackgroundSectionOpen
-        } = this.props.controllerStore;
+        } = this.props.rootStore.controllerStore;
 
         return (
             <StyledRightPanel isControllerPanelOpen={isControllerPanelOpen}>
@@ -69,7 +69,7 @@ class ControllerPanel extends React.Component<IController> {
                 />
                 {isControllerPanelOpen ? 
                     <ControllerSection 
-                        controllerStore={this.props.controllerStore}
+                        controllerStore={this.props.rootStore.controllerStore}
                         isLayoutSectionOpen={isLayoutSectionOpen}
                         isTypographySectionOpen={isTypographySectionOpen}
                         isBackgroundSectionOpen={isBackgroundSectionOpen}

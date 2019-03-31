@@ -67,9 +67,34 @@ app.post('/element/create', (req, res) => {
     const element = new ElementModel({
         _id: new mongoose.Types.ObjectId(),
         className: req.body.className,
-        width: req.body.width,
+        backgroundColor: req.body.backgroundColor,
+        paddingTop: req.body.paddingTop,
+        paddingBottom: req.body.paddingBottom,
+        paddingLeft: req.body.paddingLeft,
+        paddingRight: req.body.paddingRight,
+        marginTop: req.body.marginTop,
+        marginBottom: req.body.marginBottom,
+        marginLeft: req.body.marginLeft,
+        marginRight: req.body.marginRight,
+        padding: req.body.padding,
+        margin: req.body.margin,
         height: req.body.height,
-        backgroundColor: req.body.backgroundColor
+        width: req.body.width,
+        minWidth: req.body.minWidth,
+        maxWidth: req.body.maxWidth,
+        maxHeight: req.body.maxHeight,
+        minHeight: req.body.minHeight,
+        float: req.body.float,
+        overFlow: req.body.overFlow,
+        position: req.body.position,
+        display: req.body.display,
+        flexDirection: req.body.flexDirection,
+        justifyContent: req.body.justifyContent,
+        flexWrap: req.body.flexWrap,
+        flexBasis: req.body.flexBasis,
+        alignItems: req.body.alignItems,
+        alignContent: req.body.alignContent,
+        alignSelf: req.body.alignSelf,
     });
 
     const validation = validateInputData(req.body);
@@ -86,7 +111,7 @@ app.post('/element/create', (req, res) => {
 })
 
 //GET BY ID
-app.get('/element/get/:id', (req, res) => {
+app.get('/element/:id', (req, res) => {
     const id = req.params.id;
     
     ElementModel.findById({_id: id}, (err, element) => {
@@ -100,8 +125,8 @@ app.get('/element/get/:id', (req, res) => {
     })
 })
 
-//GET
-app.get('/element/get', (req, res) => {
+//GET ALL
+app.get('/elements', (req, res) => {
     ElementModel.find({}, (err, elements) => {
         res.json(elements)
     });

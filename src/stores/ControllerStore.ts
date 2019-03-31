@@ -1,12 +1,15 @@
 import { observable, action } from 'mobx';
 import { defaultButtonData, defaultInputData, IButtonObject, IDefaultInputs, IFlex, INone, IInline, IBlock, commonLayoutData, IArrayOfHtmlElements } from './DefaultData';
+import { RootStore } from './RootStore';
 
 class ControllerStore {
-    constructor() {
+    public rootStore: RootStore;
+    constructor(rootStore: RootStore) {
         this.displayControllerSectionsFromLocalStorage('controllerLayout');
         this.displayLayoutSectionFromLocalStorage('layoutSection');
         this.displayTypographySectionFromLocalStorage('typographySection');
         this.displayBackgroundSectionFromLocalStorage('backgroundSection');
+        this.rootStore = rootStore;
     };
 
     @observable public isControllerPanelOpen: boolean = true;
@@ -28,9 +31,13 @@ class ControllerStore {
         this.singleHtmlElement = data;
     }
 
-    @action
-    public setArrayOfElements = (data: IArrayOfHtmlElements) => {
+    @action setElementInArray = (data: IArrayOfHtmlElements) => {
         this.arrayOfHtmlElements.push(data);
+    }
+
+    @action
+    public setArrayOfElements = (data: IArrayOfHtmlElements[]) => {
+        this.arrayOfHtmlElements = data;
     }
 
     @action
@@ -151,4 +158,3 @@ class ControllerStore {
 }
 
 export { ControllerStore };
-export const controllerStore = new ControllerStore();
