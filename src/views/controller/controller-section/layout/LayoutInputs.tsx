@@ -36,8 +36,8 @@ const DisplayButton = styled(Field)`
     border: none;
     cursor: pointer;
     outline: none;
-    box-shadow: ${(props: { isActive: boolean }) => props.isActive ? `inset 0px 0px 1px 1px rgba(63,66,71,1)` : `none`};
-    background: ${(props: { isActive: boolean }) => props.isActive ? `${Colors.buttonGrey}` : `${Colors.smokeGrey}`};
+    box-shadow: ${(props: { disabled: boolean }) => props.disabled ? `inset 0px 0px 1px 1px rgba(63,66,71,1)` : `none`};
+    background: ${(props: { disabled: boolean }) => props.disabled ? `${Colors.buttonGrey}` : `${Colors.smokeGrey}`};
     &:first-child {
         border-top-left-radius: 2px;
         border-bottom-left-radius: 2px;
@@ -102,6 +102,7 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                 {this.props.buttonData.map((data, index) => {
                     return (
                         <DisplayButton 
+                            style={{backgroundImage: `url(${data.src})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', color: 'transparent'}}
                             name="display"
                             value={data.name}
                             type="button"
