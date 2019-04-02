@@ -50,13 +50,13 @@ class MainLayout extends React.Component<IMainLayout> {
 
     public render() {
         const { arrayOfHtmlElements } = this.props.rootStore.controllerStore;
-        console.log(arrayOfHtmlElements)
+        console.log('array of html elements', arrayOfHtmlElements)
         return (
             <LayoutWrapper>
                 {arrayOfHtmlElements.map((element: IArrayOfHtmlElements, index: number) => {
                     return (
                         <StyledElement 
-                            onClick={() => console.log('item', element._id)}
+
                             onDoubleClick={() => this.onDoubleClickDelete(element._id)}
                             key={index}
                             _id={element._id}

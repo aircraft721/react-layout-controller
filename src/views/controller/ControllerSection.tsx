@@ -5,6 +5,7 @@ import { TypographySectionContent } from './controller-section/typography/Typogr
 import { BackgroundSectionContent } from './controller-section/background/BackgroundSectionContent';
 import { ControllerStore } from '../../stores/ControllerStore';
 import { Colors } from '../themes/Colors';
+import { observer } from 'mobx-react';
 
 interface IControllerSection {
     controllerStore: ControllerStore;
@@ -86,8 +87,7 @@ const TitleWrap = styled.div`
 `;
 
 
-const ControllerSection = (props: IControllerSection) => {
-    return (
+const ControllerSection = observer((props: IControllerSection) => (
         <ControllerWrapper>
             <LayoutSection 
                 onClick={props.onClickToggleLayoutSection}
@@ -118,10 +118,12 @@ const ControllerSection = (props: IControllerSection) => {
                 {props.isBackgroundSectionOpen ? <StyledPoint /> : null}
             </BackgroundSection>
             {props.isBackgroundSectionOpen &&
-                <BackgroundSectionContent />
+                <BackgroundSectionContent 
+                    controllerStore={props.controllerStore}
+                />
             }
         </ControllerWrapper>
     )
-}
+);
 
 export { ControllerSection };

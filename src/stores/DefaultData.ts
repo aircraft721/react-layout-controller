@@ -128,7 +128,7 @@ export const commonAttributes: ICommonAttributes = {
 
 export const defaultInputData: IDefaultInputs = {
     className: '',
-    backgroundColor: '',
+    backgroundColor: 'transparent',
     layout: {
         block: {
             display: 'block',
@@ -162,7 +162,7 @@ export const defaultInputData: IDefaultInputs = {
 
 export const commonLayoutData = {
     className: '',
-    backgroundColor: '',
+    backgroundColor: 'transparent',
     display: '',
     ...commonAttributes
 }
