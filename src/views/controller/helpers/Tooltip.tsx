@@ -8,16 +8,32 @@ interface ITooltip {
 
 const TooltipWrapper = styled.div`
     position: absolute;
-    width: 50px;
-    height: 20px;
+    width: 58px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
     border-radius: 4px;
-    background: ${Colors.green};
+    background: ${Colors.darkGrey};
+    text-transform: capitalize;
+    color: ${Colors.white};
+    display: none;
+    text-align: center;
+    &::after {
+        content: '';
+        position: absolute;
+        background: ${Colors.darkGrey};
+        width: 8px;
+        height: 8px;
+        bottom: -3px;
+        left: 20px;
+        transform: rotate(45deg);
+    }
 `;
 
 export class Tooltip extends React.Component<ITooltip> {
     render() {
         return (
-            <TooltipWrapper>
+            <TooltipWrapper id="tooltip" role="tooltip">
                 {this.props.text}
             </TooltipWrapper>
         )

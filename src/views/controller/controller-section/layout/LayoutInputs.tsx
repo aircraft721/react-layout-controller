@@ -27,12 +27,13 @@ const LayoutInputsWrapper = styled.div`
 const DisplayOptionsButtons = styled.div`
     display: flex;
     width: 100%;
+    position: relative;
 `;
 
 const DisplayButton = styled(Field)`
     height: 25px;
     margin-left: 1px;
-    flex-basis: 20%;
+    width: 100%;
     padding: 0;
     border: none;
     cursor: pointer;
@@ -47,7 +48,17 @@ const DisplayButton = styled(Field)`
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
     }
+    &:hover + [role="tooltip"] {
+        display: block;
+	    bottom: 120%;
+    }
 `;
+
+const DisplayButtonWrapper = styled.div`
+    display: flex;
+    flex-basis: 20%;
+`;
+
 
 @observer
 class LayoutInputs extends React.Component<ILayoutInputs> {
@@ -102,8 +113,7 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
             <DisplayOptionsButtons>
                 {this.props.buttonData.map((data, index) => {
                     return (
-                        <>
-                            {data.isActive && <Tooltip text={data.name} />}
+                        <DisplayButtonWrapper>
                             <DisplayButton 
                                 style={{backgroundImage: `url(${data.src})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', color: 'transparent'}}
                                 name="display"
@@ -116,7 +126,8 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                                     this.displayLayoutType(data.name); 
                                 }}
                             />
-                        </>
+                            <Tooltip text={data.name} />
+                        </DisplayButtonWrapper>
                         
                     )
                 })}
