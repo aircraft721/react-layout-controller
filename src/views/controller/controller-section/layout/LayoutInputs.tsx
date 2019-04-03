@@ -6,6 +6,7 @@ import { WidthHeightInputs } from './editing-components/WidthHeightInputs';
 import { MarginPaddingModule } from './editing-components/MarginPaddingModule';
 import { Formik, Field } from 'formik';
 import { Colors } from '../../../themes/Colors';
+import { Tooltip } from '../../helpers/Tooltip';
 
 interface ILayoutInputs {
     data: IBlock | IInline | INone | IFlex;
@@ -101,18 +102,22 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
             <DisplayOptionsButtons>
                 {this.props.buttonData.map((data, index) => {
                     return (
-                        <DisplayButton 
-                            style={{backgroundImage: `url(${data.src})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', color: 'transparent'}}
-                            name="display"
-                            value={data.name}
-                            type="button"
-                            key={index}
-                            disabled={data.isActive}
-                            onClick={() => {
-                                this.toggle(index);
-                                this.displayLayoutType(data.name); 
-                            }}
-                        />
+                        <>
+                            {data.isActive && <Tooltip text={data.name} />}
+                            <DisplayButton 
+                                style={{backgroundImage: `url(${data.src})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', color: 'transparent'}}
+                                name="display"
+                                value={data.name}
+                                type="button"
+                                key={index}
+                                disabled={data.isActive}
+                                onClick={() => {
+                                    this.toggle(index);
+                                    this.displayLayoutType(data.name); 
+                                }}
+                            />
+                        </>
+                        
                     )
                 })}
             </DisplayOptionsButtons>
