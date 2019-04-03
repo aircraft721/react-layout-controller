@@ -3,9 +3,11 @@ import { SectionContent, LayoutSettings, SettingsTitle } from '../LayoutSectionS
 import { ControllerStore } from '../../../../stores/ControllerStore';
 import { observer } from 'mobx-react';
 import { LayoutInputs } from './LayoutInputs';
+import { LocalStorageStore } from '../../../../stores/LocalStorageStore';
 
 interface ILayoutSectionContent {
     controllerStore: ControllerStore;
+    localStorageStore: LocalStorageStore;
 }
 
 interface ILayoutState {
@@ -15,7 +17,7 @@ interface ILayoutState {
 @observer
 class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayoutState> {
     public toggle = (index: number) => {
-        this.props.controllerStore.toggleDisplayOptionsButtons(index);
+        this.props.localStorageStore.toggleDisplayOptionsButtons(index);
     }
 
     public displayLayoutType = (key: string) => {
@@ -33,8 +35,8 @@ class LayoutSectionContent extends React.Component<ILayoutSectionContent, ILayou
                     <SettingsTitle>Display Settings</SettingsTitle>
                     <LayoutInputs 
                         data={this.props.controllerStore.layoutType} 
-                        buttonData={this.props.controllerStore.defautButtonObject}
-                        toggleDisplayOptionsButtons={this.props.controllerStore.toggleDisplayOptionsButtons}
+                        buttonData={this.props.localStorageStore.defautButtonObject}
+                        toggleDisplayOptionsButtons={this.props.localStorageStore.toggleDisplayOptionsButtons}
                         displayLayoutType={this.props.controllerStore.displayLayoutType}
                         setInputData={this.setInputData}
                     />

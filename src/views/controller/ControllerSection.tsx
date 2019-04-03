@@ -6,9 +6,11 @@ import { BackgroundSectionContent } from './controller-section/background/Backgr
 import { ControllerStore } from '../../stores/ControllerStore';
 import { Colors } from '../themes/Colors';
 import { observer } from 'mobx-react';
+import { LocalStorageStore } from '../../stores/LocalStorageStore';
 
 interface IControllerSection {
     controllerStore: ControllerStore;
+    localStorageStore: LocalStorageStore;
     isLayoutSectionOpen: boolean;
     isTypographySectionOpen: boolean;
     isBackgroundSectionOpen: boolean;
@@ -99,6 +101,7 @@ const ControllerSection = observer((props: IControllerSection) => (
             </LayoutSection>
             {props.isLayoutSectionOpen &&
                 <LayoutSectionContent 
+                    localStorageStore={props.localStorageStore}
                     controllerStore={props.controllerStore}
                 />
             }

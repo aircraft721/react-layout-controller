@@ -38,19 +38,19 @@ export const StyledRightPanel = styled.div`
 @observer
 class ControllerPanel extends React.Component<IController> {
     public onClickToggle = () => {
-        this.props.rootStore.controllerStore.toggleControllerPanel();
+        this.props.rootStore.localStorageStore.toggleControllerPanel();
     }
 
     public onClickToggleLayoutSection = () => {
-        this.props.rootStore.controllerStore.toggleLayoutSection();
+        this.props.rootStore.localStorageStore.toggleLayoutSection();
     }
 
     public onClickToggleTypographySection = () => {
-        this.props.rootStore.controllerStore.toggleTypographySection();
+        this.props.rootStore.localStorageStore.toggleTypographySection();
     }
 
     public onClickToggleBackgroundSection = () => {
-        this.props.rootStore.controllerStore.toggleBackgroundSection();
+        this.props.rootStore.localStorageStore.toggleBackgroundSection();
     }
 
     render() {
@@ -59,7 +59,7 @@ class ControllerPanel extends React.Component<IController> {
             isLayoutSectionOpen,
             isTypographySectionOpen,
             isBackgroundSectionOpen
-        } = this.props.rootStore.controllerStore;
+        } = this.props.rootStore.localStorageStore;
 
         return (
             <StyledRightPanel isControllerPanelOpen={isControllerPanelOpen}>
@@ -69,6 +69,7 @@ class ControllerPanel extends React.Component<IController> {
                 />
                 {isControllerPanelOpen ? 
                     <ControllerSection 
+                        localStorageStore={this.props.rootStore.localStorageStore}
                         controllerStore={this.props.rootStore.controllerStore}
                         isLayoutSectionOpen={isLayoutSectionOpen}
                         isTypographySectionOpen={isTypographySectionOpen}
