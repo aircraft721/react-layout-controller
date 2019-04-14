@@ -56,7 +56,6 @@ class MainLayout extends React.Component<IMainLayout> {
                 {arrayOfHtmlElements.map((element: IArrayOfHtmlElements, index: number) => {
                     return (
                         <StyledElement 
-
                             onDoubleClick={() => this.onDoubleClickDelete(element._id)}
                             key={index}
                             _id={element._id}

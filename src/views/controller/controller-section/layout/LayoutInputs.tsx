@@ -108,33 +108,6 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
             }
     }
 
-    public displayOptionsButton = () => {
-        return (
-            <DisplayOptionsButtons>
-                {this.props.buttonData.map((data, index) => {
-                    return (
-                        <DisplayButtonWrapper>
-                            <DisplayButton 
-                                style={{backgroundImage: `url(${data.src})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', color: 'transparent'}}
-                                name="display"
-                                value={data.name}
-                                type="button"
-                                key={index}
-                                disabled={data.isActive}
-                                onClick={() => {
-                                    this.toggle(index);
-                                    this.displayLayoutType(data.name); 
-                                }}
-                            />
-                            <Tooltip text={data.name} />
-                        </DisplayButtonWrapper>
-                        
-                    )
-                })}
-            </DisplayOptionsButtons>
-        )
-    }
-
     render() {
         return (
             <>
@@ -147,9 +120,30 @@ class LayoutInputs extends React.Component<ILayoutInputs> {
                         render={(({ values }) => {
                             values.display = this.props.data.display;
                             this.props.setInputData(values);
+                            console.log('values', this.props.data);
                             return (
                                 <div>
-                                    {this.displayOptionsButton()}
+                                    <DisplayOptionsButtons>
+                                        {this.props.buttonData.map((data, index) => {
+                                            return (
+                                                <DisplayButtonWrapper key={index}>
+                                                    <DisplayButton 
+                                                        style={{backgroundImage: `url(${data.src})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', color: 'transparent'}}
+                                                        name="display"
+                                                        value={data.name}
+                                                        type="button"
+                                                        disabled={data.isActive}
+                                                        onClick={() => {
+                                                            this.toggle(index);
+                                                            this.displayLayoutType(data.name); 
+                                                        }}
+                                                    />
+                                                    <Tooltip text={data.name} />
+                                                </DisplayButtonWrapper>
+                                                
+                                            )
+                                        })}
+                                    </DisplayOptionsButtons>
                                     {this.switchData(this.props.data, values)}
                                 </div>
                             );

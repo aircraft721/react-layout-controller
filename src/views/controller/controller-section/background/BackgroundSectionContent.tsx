@@ -16,15 +16,8 @@ const SketchPickerWrapper = styled(SketchPicker)`
 
 @observer
 class BackgroundSectionContent extends React.Component<IBackgroundSectionContent> {
-    state = {
-        backgroundColor: 'transparent'
-    }
-
     public handleChangeComplete = async (color: any) => {
-        await this.setState({ 
-            backgroundColor: color.hex
-        });
-        this.props.controllerStore.setBackgroundColor(this.state.backgroundColor);
+        this.props.controllerStore.setBackgroundColor(color.hex);
     }
     
     public render() {
@@ -35,7 +28,7 @@ class BackgroundSectionContent extends React.Component<IBackgroundSectionContent
                     <SketchPickerWrapper 
                         presetColors={[]} 
                         disableAlpha={true}
-                        color={ this.state.backgroundColor }
+                        color={ this.props.controllerStore.singleHtmlElement.backgroundColor }
                         onChangeComplete={ this.handleChangeComplete }
                     />
                 </LayoutSettings> 

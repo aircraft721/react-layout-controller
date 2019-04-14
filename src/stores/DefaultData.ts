@@ -162,7 +162,8 @@ export const defaultInputData: IDefaultInputs = {
 
 export const commonLayoutData = {
     className: '',
-    backgroundColor: 'transparent',
+    backgroundColor: '',
+    color: '',
     display: '',
     ...commonAttributes
 }
