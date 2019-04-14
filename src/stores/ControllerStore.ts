@@ -14,6 +14,15 @@ class ControllerStore {
     @observable public arrayOfHtmlElements: IArrayOfHtmlElements[] = [];
     @observable public singleHtmlElement: IArrayOfHtmlElements;
 
+    //here we build the single html element
+    @action
+    public submitUserInputData = async () => {
+        await this.setInputData(this.singleHtmlElement);
+        await this.setBackgroundColor(this.singleHtmlElement.backgroundColor);
+
+        return this.singleHtmlElement;
+    }
+
     @action 
     public setInputData = (data: IArrayOfHtmlElements) => {
         this.singleHtmlElement = data;
@@ -23,6 +32,7 @@ class ControllerStore {
     public setBackgroundColor = (color?: string) => {
         this.singleHtmlElement['backgroundColor'] = color;
     }
+
 
     @action setElementInArray = (data: IArrayOfHtmlElements) => {
         this.arrayOfHtmlElements.push(data);

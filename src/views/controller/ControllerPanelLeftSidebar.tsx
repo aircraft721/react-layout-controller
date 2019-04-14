@@ -36,15 +36,15 @@ const StyledLeftPanel = styled.div`
 @inject('rootStore')
 @observer
 class ControllerPanelLeftSidebar extends React.Component<IControllerPanelLeftSidebar> {
-    public setArrayOfElementsMethod = () => {
-        const { singleHtmlElement } = this.props.rootStore.controllerStore;
+    public setElementOnScreen = async () => {
+        const singleHtmlElement = await this.props.rootStore.controllerStore.submitUserInputData();
         this.props.rootStore.fetchDataStore.addNewElement(singleHtmlElement);
     }
 
     public render() {
         return (
             <StyledLeftPanel>
-                <button onClick={this.setArrayOfElementsMethod}>
+                <button onClick={this.setElementOnScreen}>
                     Submit
                 </button>  
             </StyledLeftPanel>
