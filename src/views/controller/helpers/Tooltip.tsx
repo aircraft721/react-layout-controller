@@ -18,6 +18,15 @@ const TooltipWrapper = styled.div`
     color: ${Colors.white};
     display: none;
     text-align: center;
+    animation: fadeIn ease 400ms;
+    @keyframes fadeIn{
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
     &::after {
         content: '';
         position: absolute;

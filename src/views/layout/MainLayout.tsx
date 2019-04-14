@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
 import { IArrayOfHtmlElements } from '../../stores/DefaultData';
 import { RootStore } from '../../stores/RootStore';
+import { Colors } from '../themes/Colors';
 
 interface IMainLayout {
     rootStore: RootStore;
@@ -11,6 +12,21 @@ interface IMainLayout {
 const LayoutWrapper = styled.div`
     flex-grow: 1;
     background: goldenrod;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	    background-color: transparent;
+    };
+    ::-webkit-scrollbar {
+        width: 7px;
+	    background-color: transparent;
+    };
+    ::-webkit-scrollbar-thumb {
+        background-color: ${Colors.greyBlue};
+        border-radius: 10px;
+    }
 `;
 
 const StyledElement = styled.div`
