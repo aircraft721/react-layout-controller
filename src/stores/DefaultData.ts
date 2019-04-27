@@ -173,4 +173,5 @@ export interface IArrayOfHtmlElements extends ICommonAttributes {
     className?: string;
     backgroundColor?: string;
     display: string;
+    childElements: IArrayOfHtmlElements[];
 }

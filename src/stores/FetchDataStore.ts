@@ -40,8 +40,23 @@ class FetchDataStore {
         }))
         
     };
+
+    @action
+    public updateElement = async (id: string) => {
+        const response = await fetch(`${this.url}/element/update/${id}`, {
+            method: "PATCH",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        await this.getElements();
+        return response;
+    }
     
-    @action deleteElement = async (id: string) => {
+    @action 
+    public deleteElement = async (id: string) => {
         const response = await fetch(`${this.url}/element/delete/${id}`, {
             method: "DELETE",
             mode: "cors",

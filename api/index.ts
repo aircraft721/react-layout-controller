@@ -26,9 +26,11 @@ mongoose.connect('mongodb://localhost/layout')
 mongoose.Promise = global.Promise;
 //Get the default connection
 var db = mongoose.connection;
+const _id = mongoose.Schema.Types.ObjectId;
 
 const elementSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: _id,
+    childElements: [],
     className: String,
     backgroundColor: String,
     paddingTop: String,
@@ -66,6 +68,7 @@ const ElementModel = mongoose.model('Element', elementSchema);
 app.post('/element/create', (req, res) => {
     const element = new ElementModel({
         _id: new mongoose.Types.ObjectId(),
+        childElements: req.body.childElements,
         className: req.body.className,
         backgroundColor: req.body.backgroundColor,
         paddingTop: req.body.paddingTop,

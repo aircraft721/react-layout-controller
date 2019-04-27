@@ -2,11 +2,19 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
 import { IArrayOfHtmlElements } from '../../stores/DefaultData';
-import { RootStore } from '../../stores/RootStore';
 import { Colors } from '../themes/Colors';
+import { ControllerStore } from '../../stores/ControllerStore';
 
 interface IMainLayout {
-    rootStore: RootStore;
+    property?: string | boolean | number;
+    controllerStore: ControllerStore;
+    getElements(): void;
+    deleteElement(id: string): void;
+}
+
+interface IRecursive {
+    arrayOfHtmlElements: IArrayOfHtmlElements;
+    onDoubleClickDelete(id: string): void;
 }
 
 const LayoutWrapper = styled.div`
@@ -53,52 +61,79 @@ const StyledElement = styled.div`
     background-color: ${(props: IArrayOfHtmlElements) => props.backgroundColor};
 `;
 
+const RecursiveElement: React.SFC<IRecursive> = props => {
+    const { arrayOfHtmlElements } = props;
+
+    return (
+        <>
+            <StyledElement 
+                childElements={[]}
+                onDoubleClick={() => props.onDoubleClickDelete(arrayOfHtmlElements._id)}
+                onClick={() => console.log('id', arrayOfHtmlElements._id)}
+                _id={arrayOfHtmlElements._id}
+                display={arrayOfHtmlElements.display}
+                width={arrayOfHtmlElements.width}
+                height={arrayOfHtmlElements.height}
+                paddingTop={arrayOfHtmlElements.paddingTop}
+                paddingBottom={arrayOfHtmlElements.paddingBottom}
+                paddingLeft={arrayOfHtmlElements.paddingLeft}
+                paddingRight={arrayOfHtmlElements.paddingRight}
+                marginTop={arrayOfHtmlElements.marginTop}
+                marginBottom={arrayOfHtmlElements.marginBottom}
+                marginLeft={arrayOfHtmlElements.marginLeft}
+                marginRight={arrayOfHtmlElements.marginRight}
+                padding={arrayOfHtmlElements.padding}
+                margin={arrayOfHtmlElements.margin}
+                minWidth={arrayOfHtmlElements.minWidth}
+                maxWidth={arrayOfHtmlElements.maxWidth}
+                maxHeight={arrayOfHtmlElements.maxHeight}
+                minHeight={arrayOfHtmlElements.minHeight}
+                float={arrayOfHtmlElements.float}
+                overFlow={arrayOfHtmlElements.overFlow}
+                position={arrayOfHtmlElements.position}
+                backgroundColor={arrayOfHtmlElements.backgroundColor}
+            >
+                <>
+                    {arrayOfHtmlElements.childElements !== undefined ? arrayOfHtmlElements.childElements.map(child => {
+                        return (
+                            <RecursiveElement
+                                key={child._id}
+                                arrayOfHtmlElements={child}
+                                onDoubleClickDelete={() => props.onDoubleClickDelete(child._id)}
+                            />
+                        )
+                    }): null}
+                </>
+                       
+            </StyledElement>
+        </>
+    )
+}
+
+
 @inject('rootStore')
 @observer
 class MainLayout extends React.Component<IMainLayout> {
     public async componentDidMount() {
-        await this.props.rootStore.fetchDataStore.getElements();
+        await this.props.getElements();
     }
 
     public onDoubleClickDelete = (id: string) => {
-        this.props.rootStore.fetchDataStore.deleteElement(id);
+        this.props.deleteElement(id);
     }
 
     public render() {
-        const { arrayOfHtmlElements } = this.props.rootStore.controllerStore;
-        console.log('array of html elements', arrayOfHtmlElements)
+        const { arrayOfHtmlElements } = this.props.controllerStore;
+
         return (
             <LayoutWrapper>
-                {arrayOfHtmlElements.map((element: IArrayOfHtmlElements, index: number) => {
+                {arrayOfHtmlElements.map(child => {
                     return (
-                        <StyledElement 
-                            onDoubleClick={() => this.onDoubleClickDelete(element._id)}
-                            key={index}
-                            _id={element._id}
-                            display={element.display}
-                            width={element.width}
-                            height={element.height}
-                            paddingTop={element.paddingTop}
-                            paddingBottom={element.paddingBottom}
-                            paddingLeft={element.paddingLeft}
-                            paddingRight={element.paddingRight}
-                            marginTop={element.marginTop}
-                            marginBottom={element.marginBottom}
-                            marginLeft={element.marginLeft}
-                            marginRight={element.marginRight}
-                            padding={element.padding}
-                            margin={element.margin}
-                            minWidth={element.minWidth}
-                            maxWidth={element.maxWidth}
-                            maxHeight={element.maxHeight}
-                            minHeight={element.minHeight}
-                            float={element.float}
-                            overFlow={element.overFlow}
-                            position={element.position}
-                            backgroundColor={element.backgroundColor}
-                        >
-                            {element._id}
-                        </StyledElement>
+                        <RecursiveElement 
+                            key={child._id}
+                            onDoubleClickDelete={this.onDoubleClickDelete}
+                            arrayOfHtmlElements={child}
+                        />
                     )
                 })}
             </LayoutWrapper>

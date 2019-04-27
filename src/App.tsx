@@ -31,7 +31,11 @@ export const App: React.SFC<IProps> = () => {
     return (
         <MainApp>
             <ControllerPanelLeftSidebar {...stores}/>
-            <MainLayout {...stores} />
+            <MainLayout
+                controllerStore={stores.rootStore.controllerStore}
+                getElements={stores.rootStore.fetchDataStore.getElements}
+                deleteElement={stores.rootStore.fetchDataStore.deleteElement}
+            />
             <ControllerPanel {...stores}/>
         </MainApp>
     );
