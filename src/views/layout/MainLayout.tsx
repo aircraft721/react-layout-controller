@@ -46,7 +46,15 @@ class MainLayout extends React.Component<IMainLayout> {
     }
 
     public onDragEnd = (result: any) => {
-        console.log('result', result)
+        const { destination, source, draggableId } = result;
+        console.log('res', result)
+        if (!destination) {
+            return;
+        }
+
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return;
+        }
     }
 
     public render() {
