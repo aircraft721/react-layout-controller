@@ -30,7 +30,7 @@ const _id = mongoose.Schema.Types.ObjectId;
 
 const elementSchema = new mongoose.Schema({
     _id: _id,
-    childElements: [],
+    childElements: Array,
     className: String,
     backgroundColor: String,
     paddingTop: String,
