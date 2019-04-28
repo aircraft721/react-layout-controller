@@ -27,7 +27,7 @@ interface IProps {
     className?: string;
 }
 
-export const App: React.SFC<IProps> = () => {
+const App: React.SFC<IProps> = () => {
     return (
         <MainApp>
             <ControllerPanelLeftSidebar {...stores}/>
