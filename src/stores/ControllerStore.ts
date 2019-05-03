@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { defaultInputData, IDefaultInputs, IFlex, INone, IInline, IBlock, commonLayoutData, IArrayOfHtmlElements } from './DefaultData';
 import { RootStore } from './RootStore';
 
@@ -21,6 +21,12 @@ class ControllerStore {
         await this.setBackgroundColor(this.singleHtmlElement.backgroundColor);
 
         return this.singleHtmlElement;
+    }
+
+    @computed
+    public get elementsArray() {
+        this.arrayOfHtmlElements.map(x => x.isTopLevelElement = true);
+        return this.arrayOfHtmlElements;
     }
 
     @action 

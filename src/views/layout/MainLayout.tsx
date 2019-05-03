@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react';
 import { Colors } from '../themes/Colors';
 import { ControllerStore } from '../../stores/ControllerStore';
 import { RecursiveElement } from './RecursiveElement';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 interface IMainLayout {
     property?: string | boolean | number;
@@ -33,7 +32,6 @@ const LayoutWrapper = styled.div`
     }
 `;
 
-
 @inject('rootStore')
 @observer
 class MainLayout extends React.Component<IMainLayout> {
@@ -45,46 +43,21 @@ class MainLayout extends React.Component<IMainLayout> {
         this.props.deleteElement(id);
     }
 
-    public onDragEnd = (result: any) => {
-        const { destination, source, draggableId } = result;
-        console.log('res', result)
-        if (!destination) {
-            return;
-        }
-
-        if (destination.droppableId === source.droppableId && destination.index === source.index) {
-            return;
-        }
-    }
-
     public render() {
-        const { arrayOfHtmlElements } = this.props.controllerStore;
+        const { elementsArray } = this.props.controllerStore;
 
         return (
-            <DragDropContext
-                onDragEnd={this.onDragEnd}
-            >
-                <Droppable droppableId={'1231231235'}>
-                    {(provided) => (
-                        <LayoutWrapper
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            {arrayOfHtmlElements.map((child, index) => {
-                                return (
-                                    <RecursiveElement
-                                        index={index}
-                                        key={child._id}
-                                        onDoubleClickDelete={this.onDoubleClickDelete}
-                                        arrayOfHtmlElements={child}
-                                    />
-                                )
-                            })}
-                            {provided.placeholder}
-                        </LayoutWrapper>
-                    )}
-                </Droppable>
-            </DragDropContext>
+            <LayoutWrapper>
+                {elementsArray.map((element) => {
+                    return (
+                        <RecursiveElement
+                            key={element._id}
+                            onDoubleClickDelete={this.onDoubleClickDelete}
+                            elementsArray={element}
+                        />
+                    )
+                })}
+            </LayoutWrapper>
         );
     }
 }

@@ -1,13 +1,42 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { IArrayOfHtmlElements } from '../../stores/DefaultData';
-import { Draggable } from 'react-beautiful-dnd';
+import { Colors } from '../../views/themes/Colors';
 
 interface IRecursive {
-    arrayOfHtmlElements: IArrayOfHtmlElements;
+    elementsArray: IArrayOfHtmlElements;
     onDoubleClickDelete(id: string): void;
-    index: number;
 }
+
+interface IState {
+    isActive: boolean;
+}
+
+interface IStyledElementWrapper {
+    onMouseEnter(): void;
+    onMouseLeave(): void;
+    isTopLevelElement: boolean
+}
+
+interface IConditionalWrap {
+    condition: boolean;
+    wrap(children: JSX.Element): JSX.Element;
+    children: JSX.Element;
+}
+
+const BorderWrapper = styled.div`
+    box-shadow: 0px 0px 0px 1px ${Colors.oceanBlue};
+    animation: fadeIn ease 300ms;
+    @keyframes fadeIn{
+        0% {
+            box-shadow: 0px 0px 0px 1px transparent;
+        }
+        100% {
+            box-shadow: 0px 0px 0px 1px ${Colors.oceanBlue};
+        }
+    }
+    width: 100%;
+`;
 
 const StyledElement = styled.div`
     display: ${(props: IArrayOfHtmlElements) => props.display};
@@ -33,57 +62,130 @@ const StyledElement = styled.div`
     background-color: ${(props: IArrayOfHtmlElements) => props.backgroundColor};
 `;
 
-export const RecursiveElement: React.SFC<IRecursive> = props => {
-    const { arrayOfHtmlElements, index } = props;
+const StyledElementWrapper = styled.div<IStyledElementWrapper>`
+    width: 100%;
+`;
 
-    return (
-        <Draggable draggableId={arrayOfHtmlElements._id} index={index}>
-            {(provided) => (
-                <StyledElement
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    ref={provided.innerRef}
-                    childElements={[]}
-                    onDoubleClick={() => props.onDoubleClickDelete(arrayOfHtmlElements._id)}
-                    onClick={() => console.log('id', arrayOfHtmlElements._id)}
-                    _id={arrayOfHtmlElements._id}
-                    display={arrayOfHtmlElements.display}
-                    width={arrayOfHtmlElements.width}
-                    height={arrayOfHtmlElements.height}
-                    paddingTop={arrayOfHtmlElements.paddingTop}
-                    paddingBottom={arrayOfHtmlElements.paddingBottom}
-                    paddingLeft={arrayOfHtmlElements.paddingLeft}
-                    paddingRight={arrayOfHtmlElements.paddingRight}
-                    marginTop={arrayOfHtmlElements.marginTop}
-                    marginBottom={arrayOfHtmlElements.marginBottom}
-                    marginLeft={arrayOfHtmlElements.marginLeft}
-                    marginRight={arrayOfHtmlElements.marginRight}
-                    padding={arrayOfHtmlElements.padding}
-                    margin={arrayOfHtmlElements.margin}
-                    minWidth={arrayOfHtmlElements.minWidth}
-                    maxWidth={arrayOfHtmlElements.maxWidth}
-                    maxHeight={arrayOfHtmlElements.maxHeight}
-                    minHeight={arrayOfHtmlElements.minHeight}
-                    float={arrayOfHtmlElements.float}
-                    overFlow={arrayOfHtmlElements.overFlow}
-                    position={arrayOfHtmlElements.position}
-                    backgroundColor={arrayOfHtmlElements.backgroundColor}
+const ConditionalWrap = ({ condition, wrap, children }: IConditionalWrap) => condition ? wrap(children) : <>{children}</>;
+
+class RecursiveElement extends React.Component<IRecursive, IState> {
+    constructor(props: IRecursive){
+        super(props)
+        this.state = {
+            isActive: false
+        }
+    }
+
+    public handleDragStart = (e: any, element: any) => {
+        e.dataTransfer.setData('text/plain', element);
+        console.log('element', element)
+    }
+
+    public handleDragEnd = (e: any, element: any) => {
+        console.log('end');
+    }
+
+    public handleDragOver = (e:any) => {
+        e.preventDefault();
+        console.log('overr');
+    }
+
+    public handleDragEnter = () => {
+        console.log('eneter');
+    }
+
+    public handleActive = () => {
+        this.setState({
+            isActive: !this.state.isActive
+        })
+    }
+
+    public onMouseEnter = () => {
+        this.setState({
+            isActive: true
+        })
+    }
+
+    public onMouseLeave = () => {
+        this.setState({
+            isActive: false
+        })
+    }
+
+    public render() {
+        const { elementsArray } = this.props;
+        const { isTopLevelElement } = elementsArray;
+        
+        return (
+            <ConditionalWrap
+                condition={isTopLevelElement as boolean}
+                wrap={(children: JSX.Element) => (
+                    <StyledElementWrapper
+                        isTopLevelElement={isTopLevelElement as boolean}
+                        onMouseEnter={this.onMouseEnter}
+                        onMouseLeave={this.onMouseLeave}
+                    >           
+                        {children}
+                    </StyledElementWrapper>
+                )}
+            >
+                <ConditionalWrap
+                    condition={this.state.isActive}
+                    wrap={(children: JSX.Element) => (
+                        <BorderWrapper>           
+                            {children}
+                        </BorderWrapper>
+                    )}
                 >
-                    <>
-                        {arrayOfHtmlElements.childElements !== undefined ? arrayOfHtmlElements.childElements.map((child, index) => {
-                            return (
-                                <RecursiveElement
-                                    index={index}
-                                    key={child._id}
-                                    arrayOfHtmlElements={child}
-                                    onDoubleClickDelete={() => props.onDoubleClickDelete(child._id)}
-                                />
-                            )
-                        }): null}
-                        {arrayOfHtmlElements._id}
-                    </>
-            </StyledElement>
-            )}
-        </Draggable>
-    )
+                    <StyledElement
+                        draggable={true}
+                        onDragStart={(e) => this.handleDragStart(e, elementsArray._id)}
+                        onDragEnd={(e) => this.handleDragEnd(e, elementsArray._id)}
+                        onDragOver={this.handleDragOver}
+                        onDragEnter={this.handleDragEnter}
+                        childElements={[]}
+                        onDoubleClick={() => this.props.onDoubleClickDelete(elementsArray._id)}
+                        onClick={() => console.log('id', elementsArray._id)}
+                        _id={elementsArray._id}
+                        display={elementsArray.display}
+                        width={elementsArray.width}
+                        height={elementsArray.height}
+                        paddingTop={elementsArray.paddingTop}
+                        paddingBottom={elementsArray.paddingBottom}
+                        paddingLeft={elementsArray.paddingLeft}
+                        paddingRight={elementsArray.paddingRight}
+                        marginTop={elementsArray.marginTop}
+                        marginBottom={elementsArray.marginBottom}
+                        marginLeft={elementsArray.marginLeft}
+                        marginRight={elementsArray.marginRight}
+                        padding={elementsArray.padding}
+                        margin={elementsArray.margin}
+                        minWidth={elementsArray.minWidth}
+                        maxWidth={elementsArray.maxWidth}
+                        maxHeight={elementsArray.maxHeight}
+                        minHeight={elementsArray.minHeight}
+                        float={elementsArray.float}
+                        overFlow={elementsArray.overFlow}
+                        position={elementsArray.position}
+                        backgroundColor={elementsArray.backgroundColor}
+                    >  
+                        <>
+                            {elementsArray.childElements !== undefined ? elementsArray.childElements.map((child) => {
+                                return (
+                                    <RecursiveElement
+                                        key={child._id}
+                                        elementsArray={child}
+                                        onDoubleClickDelete={() => this.props.onDoubleClickDelete(child._id)}
+                                    />
+                                )
+                            }): null}
+                            {elementsArray._id}
+                        </>
+                    </StyledElement>
+                </ConditionalWrap>
+            </ConditionalWrap>
+        )
+    }
 }
+
+export { RecursiveElement };
