@@ -16,7 +16,7 @@ const SketchPickerWrapper = styled(SketchPicker)`
 
 @observer
 class BackgroundSectionContent extends React.Component<IBackgroundSectionContent> {
-    public handleChangeComplete = async (color: any) => {
+    public handleChangeComplete = (color: any) => {
         this.props.controllerStore.setBackgroundColor(color.hex);
     }
     

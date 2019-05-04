@@ -26,8 +26,8 @@ interface IConditionalWrap {
 
 const BorderWrapper = styled.div`
     box-shadow: 0px 0px 0px 1px ${Colors.oceanBlue};
-    animation: fadeIn ease 300ms;
-    @keyframes fadeIn{
+    animation: fadeInBorder ease 300ms;
+    @keyframes fadeInBorder{
         0% {
             box-shadow: 0px 0px 0px 1px transparent;
         }

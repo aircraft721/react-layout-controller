@@ -45,7 +45,7 @@ class MainLayout extends React.Component<IMainLayout> {
 
     public render() {
         const { elementsArray } = this.props.controllerStore;
-
+        
         return (
             <LayoutWrapper>
                 {elementsArray.map((element) => {

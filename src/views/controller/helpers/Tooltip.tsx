@@ -18,8 +18,8 @@ const TooltipWrapper = styled.div`
     color: ${Colors.white};
     display: none;
     text-align: center;
-    animation: fadeIn ease 400ms;
-    @keyframes fadeIn{
+    animation: fadeInTooltip ease 300ms;
+    @keyframes fadeInTooltip{
         0% {
             opacity:0;
         }

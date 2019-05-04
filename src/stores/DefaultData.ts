@@ -5,15 +5,13 @@ export interface IButtonObject {
     isActive: boolean;
 }
 
-export interface IDefaultInputs{
+export interface IDefaultInputs {
     className: string;
-    backgroundColor: string;
     layout: ILayout;
 }
 
-export interface ICommonAttributes {
+export interface ILayoutAttributes {
     id?: string;
-    backgroundColor?: string;
     paddingTop?: string;
     paddingBottom?: string;
     paddingLeft?: string;
@@ -35,15 +33,20 @@ export interface ICommonAttributes {
     position?: string;
 }
 
-export interface IBlock extends ICommonAttributes {
+export interface IBackgroundAttributes {
+    backgroundColor?: string;
+    color?: string;
+}
+
+export interface IBlock extends ILayoutAttributes, IBackgroundAttributes {
     display: string;
 }
 
-export interface IInline extends ICommonAttributes {
+export interface IInline extends ILayoutAttributes, IBackgroundAttributes {
     display: string;
 }
 
-export interface IFlex extends ICommonAttributes{
+export interface IFlex extends ILayoutAttributes, IBackgroundAttributes{
     display: string;
     flexDirection: string;
     justifyContent: string;
@@ -54,7 +57,7 @@ export interface IFlex extends ICommonAttributes{
     alignSelf: string;
 }
 
-export interface INone extends ICommonAttributes {
+export interface INone extends ILayoutAttributes, IBackgroundAttributes {
     display: string;
 }
 
@@ -104,7 +107,7 @@ export const defaultButtonData: IButtonObject[] = [
 ];
 
 
-export const commonAttributes: ICommonAttributes = {
+export const commonAttributes: ILayoutAttributes = {
     paddingTop: '',
     paddingBottom: '',
     paddingLeft: '',
@@ -126,21 +129,25 @@ export const commonAttributes: ICommonAttributes = {
     position: ''
 }
 
+export const backgroundAttributes: IBackgroundAttributes = {
+    backgroundColor: 'transparent',
+    color: ''
+}
+
 export const defaultInputData: IDefaultInputs = {
     className: '',
-    backgroundColor: 'transparent',
     layout: {
         block: {
             display: 'block',
-            ...commonAttributes
+            ...commonAttributes,
         },
         inline: {
             display: 'inline',
-            ...commonAttributes
+            ...commonAttributes,
         },
         none: {
             display: 'none',
-            ...commonAttributes
+            ...commonAttributes,
         },
         flex: {
             display: 'flex',
@@ -155,23 +162,20 @@ export const defaultInputData: IDefaultInputs = {
         },
         grid: {
             display: 'grid',
-            ...commonAttributes,
+            ...commonAttributes
         }
     }
 }
 
 export const commonLayoutData = {
-    className: '',
-    backgroundColor: '',
-    color: '',
+    className: '',    
     display: '',
-    ...commonAttributes
+    ...commonAttributes,
+    ...backgroundAttributes
 }
 
-export interface IArrayOfHtmlElements extends ICommonAttributes {
+export interface IArrayOfHtmlElements extends ILayoutAttributes, IBackgroundAttributes {
     _id: string;
-    className?: string;
-    backgroundColor?: string;
     display: string;
     isTopLevelElement?: boolean;
     childElements: IArrayOfHtmlElements[];

@@ -13,13 +13,13 @@ class ControllerStore {
     @observable public layoutType: IBlock | IInline | INone | IFlex = commonLayoutData;
     @observable public arrayOfHtmlElements: IArrayOfHtmlElements[] = [];
     @observable public singleHtmlElement: IArrayOfHtmlElements;
+    //background observables
+    @observable public backgroundColor: string = 'transparent';
 
     //here we build the single html element
     @action
-    public submitUserInputData = async () => {
-        await this.setInputData(this.singleHtmlElement);
-        await this.setBackgroundColor(this.singleHtmlElement.backgroundColor);
-
+    public submitUserInputData = () => {
+        this.setInputData(this.singleHtmlElement);
         return this.singleHtmlElement;
     }
 
@@ -31,14 +31,14 @@ class ControllerStore {
 
     @action 
     public setInputData = (data: IArrayOfHtmlElements) => {
-        this.singleHtmlElement = data;
+        const backgroundColor = this.backgroundColor;
+        return this.singleHtmlElement = { ...data, backgroundColor};
     }
 
     @action
-    public setBackgroundColor = (color?: string) => {
-        this.singleHtmlElement['backgroundColor'] = color;
+    public setBackgroundColor = (color: string) => {
+        this.backgroundColor = color;
     }
-
 
     @action setElementInArray = (data: IArrayOfHtmlElements) => {
         this.arrayOfHtmlElements.push(data);
